@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200&display=swap');
+body {
+  font-family: 'Poppins', sans-serif !important;
+  min-height: 100vh;
+  position: relative;
+  height: auto;
+  padding: 10px;
+  background-color: #121d2c !important;
+}
+
+/* Importing Bootstrap SCSS file. */
+@import "./node_modules/bootstrap/scss/bootstrap";
+
+/* Importing Datepicker SCSS file. */
+@import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";

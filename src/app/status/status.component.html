@@ -1,0 +1,62 @@
+<div>
+  <div class="title">
+    <div class="text">Member List</div>
+    <div class="flex-end">
+      <span class="align"
+        ><img class="logo" src="assets/schertech-logo.png" alt="logo" />
+      </span>
+    </div>
+  </div>
+  <div class="flex-container">
+    <div *ngFor="let item of status">
+      <div class="task">
+        <div>{{ item.status }}</div>
+        <div>
+          <span><img class="clock" src="assets/clock-icon.png" alt="" /> </span
+          ><span class="time">{{ item.updated_at | date : "hh:mm:ss" }}</span>
+        </div>
+      </div>
+      <span>{{ item.user_id }}</span>
+    </div>
+    <!-- <div>
+      <div class="task">
+        <div>Programming</div>
+        <div>
+          <span><img class="clock" src="assets/clock-icon.png" alt="" /> </span
+          ><span class="time">02:12:12</span>
+        </div>
+      </div>
+      2
+    </div>
+    <div>
+      <div class="task">
+        <div>Programming</div>
+        <div>
+          <span><img class="clock" src="assets/clock-icon.png" alt="" /> </span
+          ><span class="time">02:12:12</span>
+        </div>
+      </div>
+      3
+    </div>
+    <div>
+      <div class="task">
+        <div>Programming</div>
+        <div>
+          <span><img class="clock" src="assets/clock-icon.png" alt="" /> </span
+          ><span class="time">02:12:12</span>
+        </div>
+      </div>
+      4
+    </div>
+    <div>
+      <div class="task">
+        <div>Programming</div>
+        <div>
+          <span><img class="clock" src="assets/clock-icon.png" alt="" /> </span
+          ><span class="time">02:12:12</span>
+        </div>
+      </div>
+      5
+    </div> -->
+  </div>
+</div>
