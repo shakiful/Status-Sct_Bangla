@@ -11,7 +11,7 @@ export class StatusService {
   constructor(private http: HttpClient) {}
 
   fetchStatus(): Observable<Status> {
-    const apiUrl = `${environment.apiUrl}/task_time_data_service.php?service=get_all_user_status`;
+    const apiUrl = `${environment.apiUrl}/task_time_data_service.php?service=get_all_user_status_angular`;
 
     return this.http.get<Status>(`${apiUrl}`);
   }

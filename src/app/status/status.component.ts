@@ -17,7 +17,7 @@ export class StatusComponent implements OnInit {
     this.statusService.fetchStatus().subscribe({
       next: (response: any) => {
         this.status = response.map((data: any) => ({
-          user_id: data.user_id,
+          user_name: data.user_name,
           status: data.status,
           updated_at: data.updated_at,
           task_id: data.task_id,

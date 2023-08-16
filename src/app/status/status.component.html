@@ -9,54 +9,30 @@
   </div>
   <div class="flex-container">
     <div *ngFor="let item of status">
-      <div class="task">
-        <div>{{ item.status }}</div>
-        <div>
-          <span><img class="clock" src="assets/clock-icon.png" alt="" /> </span
-          ><span class="time">{{ item.updated_at | date : "hh:mm:ss" }}</span>
+      <div >
+        <div
+          class="task"
+          [ngClass]="{
+            'red-background': item.status === 'No Task',
+            'blue-background': item.status === 'Meeting'
+          }"
+        >
+          <div>{{ item.status }}</div>
+          <div>
+            <span
+              ><img class="clock" src="assets/clock-icon.png" alt="" /> </span
+            ><span class="time">{{ item.updated_at | date : "hh:mm:ss" }}</span>
+          </div>
         </div>
+        <span
+         class="name"
+          [ngClass]="{
+            'dark-red-background': item.status === 'No Task',
+            'dark-blue-background': item.status === 'Meeting'
+          }"
+          >{{ item.user_name }}</span
+        >
       </div>
-      <span>{{ item.user_id }}</span>
     </div>
-    <!-- <div>
-      <div class="task">
-        <div>Programming</div>
-        <div>
-          <span><img class="clock" src="assets/clock-icon.png" alt="" /> </span
-          ><span class="time">02:12:12</span>
-        </div>
-      </div>
-      2
-    </div>
-    <div>
-      <div class="task">
-        <div>Programming</div>
-        <div>
-          <span><img class="clock" src="assets/clock-icon.png" alt="" /> </span
-          ><span class="time">02:12:12</span>
-        </div>
-      </div>
-      3
-    </div>
-    <div>
-      <div class="task">
-        <div>Programming</div>
-        <div>
-          <span><img class="clock" src="assets/clock-icon.png" alt="" /> </span
-          ><span class="time">02:12:12</span>
-        </div>
-      </div>
-      4
-    </div>
-    <div>
-      <div class="task">
-        <div>Programming</div>
-        <div>
-          <span><img class="clock" src="assets/clock-icon.png" alt="" /> </span
-          ><span class="time">02:12:12</span>
-        </div>
-      </div>
-      5
-    </div> -->
   </div>
 </div>
