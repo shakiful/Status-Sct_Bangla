@@ -23,10 +23,10 @@
           }"
         >
           <div>{{ item.status }}</div>
-          <div>
-            <span
+          <div class="alignment">
+            <span style="display: flex"
               ><img class="clock" src="assets/clock-icon.png" alt="" /> </span
-            ><span class="time">{{ item.updated_at | date : "hh:mm:ss" }}</span>
+            ><span class="time">{{ item.total_time}}</span>
           </div>
         </div>
         <span class="name">{{ item.user_name }}</span>

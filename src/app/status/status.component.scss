@@ -31,7 +31,7 @@
   justify-content: flex-start;
   gap: 16px;
   margin-left: 10px;
-  height: calc(100vh - 102px);
+  height: calc(100vh - 110px);
   overflow-y: auto;
 }
 
@@ -39,7 +39,7 @@
   background-color: #12b76a4d;
   color: white;
   text-align: center;
-  line-height: 118px;
+  line-height: 117px;
   width: 360px;
   font-size: 30px;
   border-radius: 8px 8px 8px 8px;
@@ -52,7 +52,6 @@
   background-color: #12b76a;
   color: white;
   align-items: center;
-  text-align: center;
   padding: 12px;
   line-height: 30px;
   font-size: 24px;
@@ -66,6 +65,12 @@
 
 .clock {
   height: 27px;
+}
+
+.alignment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .name {
