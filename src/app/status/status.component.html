@@ -11,6 +11,8 @@
     <div *ngFor="let item of status">
       <div
         [ngClass]="{
+          'dark-green-background':
+            item.status === 'Programming' || 'Testing' || 'Designing (UI/UX)',
           'dark-red-background': item.status === 'No Task',
           'dark-blue-background': item.status === 'Meeting'
         }"
@@ -26,7 +28,7 @@
           <div class="alignment">
             <span style="display: flex"
               ><img class="clock" src="assets/clock-icon.png" alt="" /> </span
-            ><span class="time">{{ item.total_time}}</span>
+            ><span class="time">{{ item.total_time }}</span>
           </div>
         </div>
         <span class="name">{{ item.user_name }}</span>
