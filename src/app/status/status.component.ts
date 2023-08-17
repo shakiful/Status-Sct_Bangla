@@ -14,6 +14,8 @@ export class StatusComponent implements OnInit {
   public status: Status[] = [];
   public currentTime: string = '';
 
+
+
   // ngOnInit(): void {
   //   this.statusService.fetchStatus().subscribe({
   //     next: (response: any) => {

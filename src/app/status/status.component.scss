@@ -36,7 +36,6 @@
 }
 
 .flex-container > div {
-  background-color: #12b76a4d;
   color: white;
   text-align: center;
   line-height: 117px;
@@ -49,7 +48,7 @@
   display: flex;
   justify-content: space-between;
   height: 56px;
-  background-color: #12b76a;
+  background-color: rgba(18, 183, 106, 0.5);
   color: white;
   align-items: center;
   padding: 12px;
@@ -84,6 +83,11 @@
 
 .blue-background {
   background-color: #005981;
+}
+
+.dark-green-background {
+  border-radius: 8px 8px 8px 8px;
+  background-color: rgba(18, 183, 106, 0.6);
 }
 
 .dark-red-background {
