@@ -7,12 +7,14 @@ import { StatusComponent } from './status/status.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ShortenPipe } from './custom-pipes/shorten.pipe';
+import { StatusDeactivatePipe } from './custom-pipes/status-deactivate.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     StatusComponent,
     ShortenPipe,
+    StatusDeactivatePipe
   ],
   imports: [
     BrowserModule,

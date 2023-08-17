@@ -24,7 +24,7 @@
             'blue-background': item.status === 'Meeting'
           }"
         >
-          <div>{{ item.status }}</div>
+          <div>{{ item.status | status_deactivate }}</div>
           <div class="alignment">
             <span style="display: flex"
               ><img class="clock" src="assets/clock-icon.png" alt="" /> </span
