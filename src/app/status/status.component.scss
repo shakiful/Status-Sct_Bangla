@@ -28,9 +28,11 @@
 .flex-container {
   display: flex;
   flex-wrap: wrap;
-  // flex-flow: row wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 16px;
+  margin-left: 10px;
+  height: calc(100vh - 102px);
+  overflow-y: auto;
 }
 
 .flex-container > div {
@@ -40,15 +42,12 @@
   line-height: 118px;
   width: 360px;
   font-size: 30px;
-  border-radius: 0px 0px 8px 8px;
+  border-radius: 8px 8px 8px 8px;
 }
 
 .task {
   display: flex;
   justify-content: space-between;
-  top: 0;
-  left: 0;
-  right: 0;
   height: 56px;
   background-color: #12b76a;
   color: white;
@@ -82,37 +81,34 @@
   background-color: #005981;
 }
 
-.dark-red-text {
+.dark-red-background {
+  border-radius: 8px 8px 8px 8px;
   background-color: rgba(255, 99, 88, 0.5);
 }
 
-.dark-blue-text {
-  color: rgba(0, 89, 129, 0.5);
-}
-
-@media (max-width: 1920px) {
-  .flex-container {
-    justify-content: space-between;
-    width: 100%;
-    padding: 10px;
-  }
-
-  .flex-container > div {
-    width: calc(20% - 16px); /* 20% width minus gap */
-  }
+.dark-blue-background {
+  border-radius: 8px 8px 8px 8px;
+  background-color: rgba(0, 89, 129, 0.5);
 }
 
 @media (max-width: 1600px) {
   .flex-container {
-    justify-content: space-between;
-    width: 100%;
-    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 16px;
+    margin-left: 10px;
   }
 
   .flex-container > div {
-    width: calc(20% - 16px); /* 20% width minus gap */
+    width: calc(20% - 14px); /* 20% width minus 14px gap */
   }
+
   .task {
     font-size: 16px;
+  }
+
+  .name {
+    font-size: 20px;
   }
 }

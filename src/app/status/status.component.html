@@ -9,7 +9,12 @@
   </div>
   <div class="flex-container">
     <div *ngFor="let item of status">
-      <div >
+      <div
+        [ngClass]="{
+          'dark-red-background': item.status === 'No Task',
+          'dark-blue-background': item.status === 'Meeting'
+        }"
+      >
         <div
           class="task"
           [ngClass]="{
@@ -24,14 +29,7 @@
             ><span class="time">{{ item.updated_at | date : "hh:mm:ss" }}</span>
           </div>
         </div>
-        <span
-         class="name"
-          [ngClass]="{
-            'dark-red-background': item.status === 'No Task',
-            'dark-blue-background': item.status === 'Meeting'
-          }"
-          >{{ item.user_name }}</span
-        >
+        <span class="name">{{ item.user_name }}</span>
       </div>
     </div>
   </div>
