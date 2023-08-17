@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { StatusComponent } from './status/status.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { ShortenPipe } from './custom-pipes/shorten.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    StatusComponent
+    StatusComponent,
+    ShortenPipe,
   ],
   imports: [
     BrowserModule,

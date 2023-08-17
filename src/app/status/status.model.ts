@@ -1,5 +1,5 @@
 import { Deserializable } from './deserializable';
-import { User } from './user.model';
+// import { User } from './user.model';
 
 export class Status implements Deserializable {
   deserialize(input: any): this {

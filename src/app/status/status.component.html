@@ -31,7 +31,7 @@
             ><span class="time">{{ item.total_time }}</span>
           </div>
         </div>
-        <span class="name">{{ item.user_name }}</span>
+        <span class="name">{{ item.user_name | shorten: 15 }}</span>
       </div>
     </div>
   </div>
