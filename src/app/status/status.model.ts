@@ -11,6 +11,8 @@ export class Status implements Deserializable {
   public status: string = '';
   public total_time?: Date | null;
   public status_id: number;
+  public task_id: string;
+
 
   // deserialize(input: any) {
   //   Object.assign(this, input);

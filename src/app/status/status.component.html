@@ -13,14 +13,16 @@
         [ngClass]="{
           'dark-green-background':
             item.status === 'Programming' || 'Testing' || 'Designing (UI/UX)',
-          'dark-red-background': item.status === 'No Task',
+          'dark-grey-background': item.status === 'No Task',
+          'dark-red-background': item.task_id === '10891',
           'dark-blue-background': item.status === 'Meeting'
         }"
       >
         <div
           class="task"
           [ngClass]="{
-            'red-background': item.status === 'No Task',
+            'grey-background': item.status === 'No Task',
+            'red-background': item.task_id === '10891',
             'blue-background': item.status === 'Meeting'
           }"
         >

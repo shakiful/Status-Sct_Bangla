@@ -85,9 +85,21 @@
   background-color: #005981;
 }
 
+.grey-background {
+  border-radius: 8px 8px 8px 8px;
+  background-color: RGB(102, 112, 133, 1);
+}
+
 .dark-green-background {
   border-radius: 8px 8px 8px 8px;
   background-color: rgba(18, 183, 106, 0.6);
+}
+
+.dark-grey-background {
+  border-radius: 8px 8px 8px 8px;
+  background-color: rgba(52, 64, 84, 0.50);
+
+
 }
 
 .dark-red-background {
@@ -101,7 +113,6 @@
 }
 
 @media (max-width: 1600px) {
-
   .title {
     padding: 5px;
   }
@@ -127,6 +138,10 @@
 
   .name {
     font-size: 22px;
+  }
+
+  .clock {
+    height: 25px;
   }
 }
 
@@ -156,5 +171,9 @@
 
   .name {
     font-size: 22px;
+  }
+
+  .clock {
+    height: 24px;
   }
 }
