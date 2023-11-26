@@ -10,9 +10,10 @@
   <div class="flex-container">
     <div *ngFor="let item of status">
       <div
+        class="height"
         [ngClass]="{
           'dark-green-background':
-            item.status === 'Programming' || 'Testing' || 'Designing (UI/UX)',
+            item.status === 'Programming' || 'Testing' || 'Designing (UI/UX)' ,
           'dark-grey-background': item.status === 'No Task',
           'dark-red-background': item.task_id === '10891',
           'dark-blue-background': item.status === 'Meeting'
@@ -33,8 +34,36 @@
             ><span class="time">{{ item.total_time }}</span>
           </div>
         </div>
-        <span class="name">{{ item.user_name | shorten: 15 }}</span>
+        <span class="name">{{ item.user_name | shorten : 23 }}</span>
       </div>
     </div>
+
+    <!-- Dummy data -->
+
+    <!-- <div class="height">
+      <div class="task">
+        <div>deactivate</div>
+        <div class="alignment">
+          <span style="display: flex"
+            ><img class="clock" src="assets/clock-icon.png" alt="" /> </span
+          ><span class="time">12:12:12</span>
+        </div>
+      </div>
+      <span class="name">{{"Md.Shakiful Islam Khan mm" |  shorten : 23}} </span>
+    </div>
+
+    <div class="height">
+      <div class="task">
+        <div>deactivate</div>
+        <div class="alignment">
+          <span style="display: flex"
+            ><img class="clock" src="assets/clock-icon.png" alt="" /> </span
+          ><span class="time">12:12:06</span>
+        </div>
+      </div>
+      <span class="name">Rafi</span>
+    </div> -->
+
+    <!-- </div> -->
   </div>
 </div>
