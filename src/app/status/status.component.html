@@ -7,63 +7,75 @@
       </span>
     </div>
   </div>
-  <div class="flex-container">
-    <div *ngFor="let item of status">
-      <div
-        class="height"
-        [ngClass]="{
-          'dark-green-background':
-            item.status === 'Programming' || 'Testing' || 'Designing (UI/UX)' ,
-          'dark-grey-background': item.status === 'No Task',
-          'dark-red-background': item.task_id === '10891',
-          'dark-blue-background': item.status === 'Meeting'
-        }"
-      >
+
+  <div class="d-flex flex-row">
+    <!-- Sidebar start -->
+    <div
+      class="d-flex flex-column justify-content-center align-items-center flex-shrink-0 sidebar-frame"
+    >
+      <div>dsada</div>
+    </div>
+
+    <!-- Sidebar end -->
+
+    <div class="flex-container">
+      <div *ngFor="let item of status">
         <div
-          class="task"
+          class="height"
           [ngClass]="{
-            'grey-background': item.status === 'No Task',
-            'red-background': item.task_id === '10891',
-            'blue-background': item.status === 'Meeting'
+            'dark-green-background':
+              item.status === 'Programming' || 'Testing' || 'Designing (UI/UX)',
+            'dark-grey-background': item.status === 'No Task',
+            'dark-red-background': item.task_id === '10891',
+            'dark-blue-background': item.status === 'Meeting'
           }"
         >
-          <div>{{ item.status | status_deactivate }}</div>
+          <div
+            class="task"
+            [ngClass]="{
+              'grey-background': item.status === 'No Task',
+              'red-background': item.task_id === '10891',
+              'blue-background': item.status === 'Meeting'
+            }"
+          >
+            <div>{{ item.status | status_deactivate }}</div>
+            <div class="alignment">
+              <span style="display: flex"
+                ><img class="clock" src="assets/clock-icon.png" alt="" /> </span
+              ><span class="time">{{ item.total_time }}</span>
+            </div>
+          </div>
+          <span class="name">{{ item.user_name | shorten : 23 }}</span>
+        </div>
+      </div>
+
+      <!-- Dummy data -->
+
+      <!-- <div class="height">
+        <div class="task">
+          <div>deactivate</div>
           <div class="alignment">
             <span style="display: flex"
               ><img class="clock" src="assets/clock-icon.png" alt="" /> </span
-            ><span class="time">{{ item.total_time }}</span>
+            ><span class="time">12:12:12</span>
           </div>
         </div>
-        <span class="name">{{ item.user_name | shorten : 23 }}</span>
+        <span class="name">{{"Md.Shakiful Islam Khan mm" |  shorten : 23}} </span>
       </div>
-    </div>
 
-    <!-- Dummy data -->
-
-    <!-- <div class="height">
-      <div class="task">
-        <div>deactivate</div>
-        <div class="alignment">
-          <span style="display: flex"
-            ><img class="clock" src="assets/clock-icon.png" alt="" /> </span
-          ><span class="time">12:12:12</span>
+      <div class="height">
+        <div class="task">
+          <div>deactivate</div>
+          <div class="alignment">
+            <span style="display: flex"
+              ><img class="clock" src="assets/clock-icon.png" alt="" /> </span
+            ><span class="time">12:12:06</span>
+          </div>
         </div>
-      </div>
-      <span class="name">{{"Md.Shakiful Islam Khan mm" |  shorten : 23}} </span>
+        <span class="name">Rafi</span>
+      </div> -->
+
+      <!-- </div> -->
     </div>
-
-    <div class="height">
-      <div class="task">
-        <div>deactivate</div>
-        <div class="alignment">
-          <span style="display: flex"
-            ><img class="clock" src="assets/clock-icon.png" alt="" /> </span
-          ><span class="time">12:12:06</span>
-        </div>
-      </div>
-      <span class="name">Rafi</span>
-    </div> -->
-
-    <!-- </div> -->
   </div>
 </div>

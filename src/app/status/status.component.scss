@@ -1,11 +1,11 @@
 .title {
   display: flex;
   justify-content: space-between;
-  padding: 10px;
+  padding: 5px;
 }
 
 .text {
-  font-size: 48px;
+  font-size: 38px;
   font-weight: 500;
   color: #ffffff;
 }
@@ -22,7 +22,7 @@
 
 .logo {
   width: 301px;
-  height: 48px;
+  height: 38px;
 }
 
 .flex-container {
@@ -33,21 +33,20 @@
   gap: 13px;
   margin-left: 10px;
   margin-right: 10px;
-  height: calc(100vh - 120px);
   overflow: auto;
 }
 
 .flex-container > div {
   color: white;
   text-align: center;
-  line-height: 85px;
+  line-height: 55px;
   width: 100%;
   font-size: 30px;
   border-radius: 8px 8px 8px 8px;
 }
 
 .height {
-  height: 149px;
+  height: 120px;
 }
 
 .task {
@@ -57,7 +56,7 @@
   background-color: rgba(18, 183, 106, 0.5);
   color: white;
   align-items: center;
-  padding: 12px;
+  padding: 6px;
   line-height: 30px;
   font-size: 24px;
   border-radius: 8px 8px 0px 0px;
@@ -212,7 +211,7 @@
     gap: 5px;
     margin-left: 9px;
     margin-right: 4px;
-    height: calc(100vh - 120px);
+    height: calc(100vh - 100px);
     overflow: auto;
   }
 
@@ -242,4 +241,12 @@
   .clock {
     height: 24px;
   }
+}
+
+.sidebar-frame {
+  width: 234px;
+  height: 979px;
+  border-radius: 7px;
+  background: #00384e;
+  margin-left: 5px;
 }
