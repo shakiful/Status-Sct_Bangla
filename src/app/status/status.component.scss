@@ -250,3 +250,31 @@
   background: #00384e;
   margin-left: 5px;
 }
+
+.sidebar-text {
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.active-style {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.count {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: center;
+  font-size: 20px; /* Adjust the font size */
+  font-weight: 400;
+}
