@@ -39,12 +39,9 @@ export class StatusComponent implements OnInit {
         this.updateStatusCount();
         this.total = this.status.length; // Update total count here if needed
         console.log(this.status);
-        console.log(this.status);
       },
       error: () => {},
     });
-    this.total = this.status.length;
-    console.log(this.status.length);
   }
   updateStatusCount() {
     // Reset counts
