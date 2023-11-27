@@ -28,24 +28,24 @@
 .flex-container {
   display: grid;
   grid-template-rows: repeat(6, 0.1fr);
-  grid-auto-columns: 1fr auto;
+  // grid-auto-columns: 1fr auto;
   grid-auto-flow: column;
-  gap: 21px;
-  margin-left: 10px;
-  overflow: auto;
+  gap: 15px;
+  padding-left: 10px;
+  // overflow: auto;
 }
 
 .flex-container > div {
   color: white;
   text-align: center;
-  line-height: 62px;
+  line-height: 69px;
   width: 396px;
   font-size: 30px;
   border-radius: 8px 8px 8px 8px;
 }
 
 .height {
-  height: 124px;
+  height: 129px;
 }
 
 .task {
@@ -113,135 +113,6 @@
   background-color: rgba(0, 89, 129, 0.5);
 }
 
-@media (max-width: 1600px) {
-  .title {
-    padding: 5px;
-  }
-
-  // .flex-container {
-  //   display: flex;
-  //   flex-wrap: wrap;
-  //   justify-content: flex-start;
-  //   gap: 9px;
-  //   height: calc(100vh - 120px);
-  //   margin-left: 10px;
-  // }
-
-  // .flex-container > div {
-  //   width: calc(20% - 8px); /* 20% width minus 14px gap */
-  //   line-height: 64px;
-  // }
-
-  .flex-container {
-    display: grid;
-    grid-template-rows: repeat(6, 1fr);
-    /* grid-template-columns: repeat(5, 1fr); */
-    grid-auto-flow: column;
-    gap: 5px;
-    margin-left: 8px;
-    margin-right: 4px;
-    height: calc(100vh - 120px);
-    overflow: auto;
-  }
-
-  .flex-container > div {
-    color: white;
-    text-align: center;
-    line-height: 55px;
-    width: 100%;
-    font-size: 30px;
-    border-radius: 8px 8px 8px 8px;
-  }
-
-  .height {
-    height: 98px;
-  }
-
-  .task {
-    height: 36px;
-    line-height: 26px;
-    font-size: 16px;
-  }
-
-  .name {
-    font-size: 22px;
-  }
-
-  .clock {
-    height: 25px;
-  }
-}
-
-@media (max-width: 1400px) {
-  .title {
-    padding: 5px;
-  }
-
-  // .flex-container {
-  //   display: grid;
-  //   grid-template-rows: repeat(6, 1fr);
-  //   /* grid-template-columns: repeat(5, 1fr); */
-  //   grid-auto-flow: column;
-  //   gap: 8px;
-  //   margin-left: 10px;
-  //   margin-right: 10px;
-  //   height: calc(100vh - 130px);
-  //   overflow: auto;
-  // }
-
-  // .flex-container > div {
-  //   width: calc(20% - 8px);
-  //   line-height: 44px;
-  // }
-
-  // .flex-container {
-  //   display: flex;
-  //   flex-wrap: wrap;
-  //   justify-content: flex-start;
-  //   gap: 8px;
-  //   margin-left: 10px;
-  // }
-
-  .flex-container {
-    display: grid;
-    grid-template-rows: repeat(6, 1fr);
-    /* grid-template-columns: repeat(5, 1fr); */
-    grid-auto-flow: column;
-    gap: 5px;
-    margin-left: 9px;
-    margin-right: 4px;
-    height: calc(100vh - 100px);
-    overflow: auto;
-  }
-
-  .flex-container > div {
-    color: white;
-    text-align: center;
-    line-height: 50px;
-    width: 100%;
-    font-size: 30px;
-    border-radius: 8px 8px 8px 8px;
-  }
-
-  .height {
-    height: 98px;
-  }
-
-  .task {
-    height: 40px;
-    line-height: 20px;
-    font-size: 16px;
-  }
-
-  .name {
-    font-size: 22px;
-  }
-
-  .clock {
-    height: 24px;
-  }
-}
-
 .sidebar-frame {
   width: 234px;
   height: calc(100vh - 82px);
@@ -306,4 +177,189 @@
 .gray-color {
   filter: invert(47%) sepia(10%) saturate(873%) hue-rotate(182deg)
     brightness(89%) contrast(84%);
+}
+
+@media (max-width: 1600px) {
+  .title {
+    padding: 5px;
+  }
+
+  // .flex-container {
+  //   display: flex;
+  //   flex-wrap: wrap;
+  //   justify-content: flex-start;
+  //   gap: 9px;
+  //   height: calc(100vh - 120px);
+  //   margin-left: 10px;
+  // }
+
+  // .flex-container > div {
+  //   width: calc(20% - 8px); /* 20% width minus 14px gap */
+  //   line-height: 64px;
+  // }
+
+  .flex-container {
+    display: grid;
+    grid-template-rows: repeat(6, 0.1fr);
+    /* grid-template-columns: repeat(5, 1fr); */
+    grid-auto-flow: column;
+    gap: 10px;
+    padding-left: 4px;
+    // height: calc(100vh - 120px);
+  }
+
+  .flex-container > div {
+    color: white;
+    text-align: center;
+    line-height: 55px;
+    width: 327px;
+    font-size: 30px;
+    border-radius: 8px 8px 8px 8px;
+    padding-left: 4px;
+    padding-bottom: 4px;
+  }
+
+  .height {
+    height: 115px;
+  }
+
+  .task {
+    height: 36px;
+    line-height: 26px;
+    font-size: 16px;
+  }
+
+  .name {
+    font-size: 22px;
+  }
+
+  .clock {
+    height: 25px;
+  }
+
+  .sidebar-frame {
+    width: 218px;
+    height: calc(100vh - 83px);
+  }
+
+  .sidebar-text {
+    font-size: 21px;
+  }
+
+  .count {
+    font-size: 22px;
+  }
+
+  .sidebar-circle {
+    height: 105px;
+  }
+
+  .sidebar-circle-small {
+    height: 35px;
+  }
+
+  .sidebar-icons {
+    height: 30px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .title {
+    padding: 5px;
+  }
+  .text {
+    font-size: 30px;
+  }
+
+  .logo {
+    width: 200px;
+    height: 30px;
+  }
+
+  // .flex-container {
+  //   display: grid;
+  //   grid-template-rows: repeat(6, 1fr);
+  //   /* grid-template-columns: repeat(5, 1fr); */
+  //   grid-auto-flow: column;
+  //   gap: 8px;
+  //   margin-left: 10px;
+  //   margin-right: 10px;
+  //   height: calc(100vh - 130px);
+  //   overflow: auto;
+  // }
+
+  // .flex-container > div {
+  //   width: calc(20% - 8px);
+  //   line-height: 44px;
+  // }
+
+  // .flex-container {
+  //   display: flex;
+  //   flex-wrap: wrap;
+  //   justify-content: flex-start;
+  //   gap: 8px;
+  //   margin-left: 10px;
+  // }
+
+  .flex-container {
+    display: grid;
+    grid-template-rows: repeat(6, 0.1fr);
+    /* grid-template-columns: repeat(5, 1fr); */
+    grid-auto-flow: column;
+    padding-left: 4px;
+    gap: 5px;
+  }
+
+  .flex-container > div {
+    color: white;
+    text-align: center;
+    line-height: 45px;
+    width: 277px;
+    font-size: 30px;
+    border-radius: 8px 8px 8px 8px;
+    padding-left: 4px;
+  }
+
+  .height {
+    height: 87px;
+  }
+
+  .task {
+    height: 40px;
+    line-height: 20px;
+    font-size: 16px;
+  }
+
+  .name {
+    font-size: 18px;
+  }
+
+  .clock {
+    height: 24px;
+  }
+
+  .sidebar-frame {
+    width: 210px;
+    height: calc(100vh - 73px);
+  }
+
+  .sidebar-text {
+    font-size: 18px;
+  }
+
+  .count {
+    font-size: 20px;
+  }
+
+  .sidebar-circle {
+    height: 90px;
+  }
+
+  .sidebar-circle-small {
+    height: 30px;
+  }
+
+  .sidebar-icons {
+    height: 25px;
+  }
 }
