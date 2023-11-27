@@ -54,10 +54,11 @@ export class StatusComponent implements OnInit {
     this.status.forEach((item) => {
       if (
         item.status === 'Programming' ||
-        item.status === 'Testing' ||
+        item.status === 'Testing' && !((item.task_id === '10891')) ||
         item.status === 'Designing (UI/UX)' ||
         item.status === 'Meeting' ||
-        item.status === 'Debugging'
+        item.status === 'Debugging' ||
+        item.status === 'Management' 
       ) {
         console.log(this.active);
 

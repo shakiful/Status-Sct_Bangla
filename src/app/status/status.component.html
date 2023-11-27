@@ -11,7 +11,7 @@
   <div class="d-flex flex-row">
     <!-- Sidebar start -->
     <div
-      class="d-inline-flex flex-column justify-content-center align-items-center flex-shrink-0 sidebar-frame"
+      class="d-inline-flex flex-column justify-content-start justify-content-evenly align-items-center sidebar-frame"
     >
       <div class="d-flex flex-column align-items-center gap-2">
         <div class="sidebar-text">Total</div>
@@ -19,7 +19,11 @@
           class="d-flex justify-content-center align-items-center gap-1 active-style"
         >
           <span
-            ><img src="assets/blue_Ellipse.png" alt="total" />
+            ><img
+              class="sidebar-circle"
+              src="assets/blue_Ellipse.png"
+              alt="total"
+            />
             <p class="count">{{ total }}</p>
           </span>
         </div>
@@ -30,7 +34,11 @@
           class="d-flex justify-content-center align-items-center gap-1 active-style"
         >
           <span
-            ><img src="assets/Ellipse 114.png" alt="active" />
+            ><img
+              class="sidebar-circle"
+              src="assets/Ellipse 114.png"
+              alt="active"
+            />
             <p class="count">{{ active }}</p>
           </span>
         </div>
@@ -41,7 +49,11 @@
           class="d-flex justify-content-center align-items-center gap-1 active-style"
         >
           <span
-            ><img src="assets/red_ellipse.png" alt="No Task" />
+            ><img
+              class="sidebar-circle"
+              src="assets/red_ellipse.png"
+              alt="No Task"
+            />
             <p class="count">{{ noTask }}</p>
           </span>
         </div>
@@ -52,7 +64,11 @@
           class="d-flex justify-content-center align-items-center gap-1 active-style"
         >
           <span
-            ><img src="assets/gray_Ellipse.png" alt="deactive" />
+            ><img
+              class="sidebar-circle"
+              src="assets/gray_Ellipse.png"
+              alt="deactive"
+            />
             <p class="count">{{ deActivated }}</p>
           </span>
         </div>
