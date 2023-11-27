@@ -39,6 +39,19 @@
               src="assets/Ellipse 114.png"
               alt="active"
             />
+            <span>
+              <img
+                class="sidebar-circle-small"
+                src="assets/small_green_ellipse.png"
+                alt="active"
+              />
+              <img
+                class="sidebar-icons"
+                src="assets/play_icon.png"
+                alt="active"
+              />
+            </span>
+
             <p class="count">{{ active }}</p>
           </span>
         </div>
@@ -54,6 +67,18 @@
               src="assets/red_ellipse.png"
               alt="No Task"
             />
+            <span>
+              <img
+                class="sidebar-circle-small"
+                src="assets/small_red_ellipse.png"
+                alt="active"
+              />
+              <img
+                class="sidebar-icons red-color"
+                src="assets/close_icon.png"
+                alt="active"
+              />
+            </span>
             <p class="count">{{ noTask }}</p>
           </span>
         </div>
@@ -69,6 +94,18 @@
               src="assets/gray_Ellipse.png"
               alt="deactive"
             />
+            <span>
+              <img
+                class="sidebar-circle-small"
+                src="assets/small_gray_ellipse.png"
+                alt="active"
+              />
+              <img
+                class="sidebar-icons gray-color"
+                src="assets/pause_icon.png"
+                alt="active"
+              />
+            </span>
             <p class="count">{{ deActivated }}</p>
           </span>
         </div>
@@ -99,7 +136,7 @@
           >
             <div>{{ item.status | status_deactivate }}</div>
             <div class="alignment">
-              <span style="display: flex"
+              <span class="d-flex"
                 ><img class="clock" src="assets/clock-icon.png" alt="" /> </span
               ><span class="time">{{ item.total_time }}</span>
             </div>

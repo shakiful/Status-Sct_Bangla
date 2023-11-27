@@ -281,3 +281,29 @@
 .sidebar-circle {
   height: 120px;
 }
+
+.sidebar-circle-small {
+  position: absolute;
+  top: 85%;
+  left: 85%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.sidebar-icons {
+  position: absolute;
+  top: 85%;
+  left: 85%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.red-color {
+  filter: invert(25%) sepia(63%) saturate(2043%) hue-rotate(340deg)
+    brightness(123%) contrast(89%);
+}
+
+.gray-color {
+  filter: invert(47%) sepia(10%) saturate(873%) hue-rotate(182deg)
+    brightness(89%) contrast(84%);
+}
