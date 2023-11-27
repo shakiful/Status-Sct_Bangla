@@ -2,41 +2,60 @@
   <div class="title">
     <div class="text">Member List</div>
     <div class="flex-end">
-      <span class="align"><img class="logo" src="assets/schertech-logo.png" alt="logo" />
+      <span class="align"
+        ><img class="logo" src="assets/schertech-logo.png" alt="logo" />
       </span>
     </div>
   </div>
 
   <div class="d-flex flex-row">
     <!-- Sidebar start -->
-    <div class="d-inline-flex flex-column justify-content-center align-items-center flex-shrink-0 sidebar-frame">
+    <div
+      class="d-inline-flex flex-column justify-content-center align-items-center flex-shrink-0 sidebar-frame"
+    >
       <div class="d-flex flex-column align-items-center gap-2">
         <div class="sidebar-text">Total</div>
-        <div class="d-flex justify-content-center align-items-center gap-1 active-style"><span><img
-              src="assets/blue_Ellipse.png" alt="total" />
-            <p class="count">00</p>
-          </span></div>
+        <div
+          class="d-flex justify-content-center align-items-center gap-1 active-style"
+        >
+          <span
+            ><img src="assets/blue_Ellipse.png" alt="total" />
+            <p class="count">{{ total }}</p>
+          </span>
+        </div>
       </div>
       <div class="d-flex flex-column align-items-center gap-2">
         <div class="sidebar-text">Active</div>
-        <div class="d-flex justify-content-center align-items-center gap-1 active-style"><span><img
-              src="assets/Ellipse 114.png" alt="active" />
-            <p class="count">00</p>
-          </span></div>
+        <div
+          class="d-flex justify-content-center align-items-center gap-1 active-style"
+        >
+          <span
+            ><img src="assets/Ellipse 114.png" alt="active" />
+            <p class="count">{{ active }}</p>
+          </span>
+        </div>
       </div>
       <div class="d-flex flex-column align-items-center gap-2">
-        <div class="sidebar-text">OFF</div>
-        <div class="d-flex justify-content-center align-items-center gap-1 active-style"><span><img
-              src="assets/red_ellipse.png" alt="deactive" />
-            <p class="count">00</p>
-          </span></div>
+        <div class="sidebar-text">No Task</div>
+        <div
+          class="d-flex justify-content-center align-items-center gap-1 active-style"
+        >
+          <span
+            ><img src="assets/red_ellipse.png" alt="No Task" />
+            <p class="count">{{ noTask }}</p>
+          </span>
+        </div>
       </div>
       <div class="d-flex flex-column align-items-center gap-2">
         <div class="sidebar-text">Deactive</div>
-        <div class="d-flex justify-content-center align-items-center gap-1 active-style"><span><img
-              src="assets/gray_Ellipse.png" alt="deactive" />
-            <p class="count">00</p>
-          </span></div>
+        <div
+          class="d-flex justify-content-center align-items-center gap-1 active-style"
+        >
+          <span
+            ><img src="assets/gray_Ellipse.png" alt="deactive" />
+            <p class="count">{{ deActivated }}</p>
+          </span>
+        </div>
       </div>
     </div>
 
@@ -44,22 +63,29 @@
 
     <div class="flex-container">
       <div *ngFor="let item of status">
-        <div class="height" [ngClass]="{
+        <div
+          class="height"
+          [ngClass]="{
             'dark-green-background':
               item.status === 'Programming' || 'Testing' || 'Designing (UI/UX)',
             'dark-grey-background': item.status === 'No Task',
             'dark-red-background': item.task_id === '10891',
             'dark-blue-background': item.status === 'Meeting'
-          }">
-          <div class="task" [ngClass]="{
+          }"
+        >
+          <div
+            class="task"
+            [ngClass]="{
               'grey-background': item.status === 'No Task',
               'red-background': item.task_id === '10891',
               'blue-background': item.status === 'Meeting'
-            }">
+            }"
+          >
             <div>{{ item.status | status_deactivate }}</div>
             <div class="alignment">
-              <span style="display: flex"><img class="clock" src="assets/clock-icon.png" alt="" /> </span><span
-                class="time">{{ item.total_time }}</span>
+              <span style="display: flex"
+                ><img class="clock" src="assets/clock-icon.png" alt="" /> </span
+              ><span class="time">{{ item.total_time }}</span>
             </div>
           </div>
           <span class="name">{{ item.user_name | shorten : 23 }}</span>

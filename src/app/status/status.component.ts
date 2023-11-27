@@ -12,6 +12,10 @@ export class StatusComponent implements OnInit {
 
   public status: Status[] = [];
   public currentTime: string = '';
+  public total = 0;
+  public active = 0;
+  public noTask = 0;
+  public deActivated = 0;
 
   ngOnInit(): void {
     // Initial call to fetchStatus
@@ -31,9 +35,43 @@ export class StatusComponent implements OnInit {
           task_id: data.task_id,
           team: data.team,
         }));
+        // Update counts after receiving new data
+        this.updateStatusCount();
+        this.total = this.status.length; // Update total count here if needed
+        console.log(this.status);
         console.log(this.status);
       },
       error: () => {},
     });
+    this.total = this.status.length;
+    console.log(this.status.length);
+  }
+  updateStatusCount() {
+    // Reset counts
+    this.total = 0;
+    this.active = 0;
+    this.noTask = 0;
+    this.deActivated = 0;
+
+    // Iterate through the status array
+    this.status.forEach((item) => {
+      if (
+        item.status === 'Programming' ||
+        item.status === 'Testing' ||
+        item.status === 'Designing (UI/UX)' ||
+        item.status === 'Meeting' ||
+        item.status === 'Debugging'
+      ) {
+        console.log(this.active);
+
+        this.active++;
+        console.log(this.active);
+      } else if (item.task_id === '10891') {
+        this.noTask++;
+      } else if (item.status === 'No Task') {
+        this.deActivated++;
+      }
+    });
+    console.log(this.active);
   }
 }
