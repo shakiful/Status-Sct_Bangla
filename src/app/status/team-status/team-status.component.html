@@ -1,0 +1,153 @@
+<div class="d-flex flex-row">
+  <!-- Sidebar start -->
+  <div
+    class="d-inline-flex flex-column justify-content-start justify-content-evenly align-items-center sidebar-frame"
+  >
+    <div class="d-flex flex-column align-items-center gap-2">
+      <div class="sidebar-text">Total</div>
+      <div
+        class="d-flex justify-content-center align-items-center gap-1 active-style"
+      >
+        <span
+          ><img
+            class="sidebar-circle"
+            src="assets/blue_Ellipse.png"
+            alt="total"
+          />
+          <p class="count">{{ total }}</p>
+        </span>
+      </div>
+    </div>
+    <div class="d-flex flex-column align-items-center gap-2">
+      <div class="sidebar-text">Active</div>
+      <div
+        class="d-flex justify-content-center align-items-center gap-1 active-style"
+      >
+        <span
+          ><img
+            class="sidebar-circle"
+            src="assets/Ellipse 114.png"
+            alt="active"
+          />
+          <span>
+            <img
+              class="sidebar-circle-small"
+              src="assets/small_green_ellipse.png"
+              alt="active"
+            />
+            <img
+              class="sidebar-icons"
+              src="assets/play_icon.png"
+              alt="active"
+            />
+          </span>
+
+          <p class="count">{{ active }}</p>
+        </span>
+      </div>
+    </div>
+    <div class="d-flex flex-column align-items-center gap-2">
+      <div class="sidebar-text">No Task</div>
+      <div
+        class="d-flex justify-content-center align-items-center gap-1 active-style"
+      >
+        <span
+          ><img
+            class="sidebar-circle"
+            src="assets/red_ellipse.png"
+            alt="No Task"
+          />
+          <span>
+            <img
+              class="sidebar-circle-small"
+              src="assets/small_red_ellipse.png"
+              alt="active"
+            />
+            <img
+              class="sidebar-icons red-color"
+              src="assets/close_icon.png"
+              alt="active"
+            />
+          </span>
+          <p class="count">{{ noTask }}</p>
+        </span>
+      </div>
+    </div>
+    <div class="d-flex flex-column align-items-center gap-2">
+      <div class="sidebar-text">Deactive</div>
+      <div
+        class="d-flex justify-content-center align-items-center gap-1 active-style"
+      >
+        <span
+          ><img
+            class="sidebar-circle"
+            src="assets/gray_Ellipse.png"
+            alt="deactive"
+          />
+          <span>
+            <img
+              class="sidebar-circle-small"
+              src="assets/small_gray_ellipse.png"
+              alt="active"
+            />
+            <img
+              class="sidebar-icons gray-color"
+              src="assets/pause_icon.png"
+              alt="active"
+            />
+          </span>
+          <p class="count">{{ deActivated }}</p>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sidebar end -->
+
+  <div class="flex-container">
+    <div *ngFor="let item of status">
+      <div
+        class="height"
+        [ngClass]="{
+          'dark-green-background':
+            item.status === 'Programming' || 'Testing' || 'Designing (UI/UX)',
+          'dark-grey-background': item.status === 'No Task',
+          'dark-red-background': item.task_id === '10891',
+          'dark-blue-background': item.status === 'Meeting'
+        }"
+      >
+        <div
+          class="task"
+          [ngClass]="{
+            'grey-background': item.status === 'No Task',
+            'red-background': item.task_id === '10891',
+            'blue-background': item.status === 'Meeting'
+          }"
+        >
+          <div>{{ item.status | status_deactivate }}</div>
+          <div class="alignment">
+            <span class="d-flex"
+              ><img class="clock" src="assets/clock-icon.png" alt="" /> </span
+            ><span class="time">{{ item.total_time }}</span>
+          </div>
+        </div>
+        <div
+          class="d-flex px-2"
+          [ngStyle]="{
+            'justify-content':
+              item.status === 'No Task' ? 'center' : 'space-between'
+          }"
+        >
+          <span class="name">{{ item.user_name | shorten : 23 }}</span>
+          <span class="name">{{ item.task_id }}</span>
+        </div>
+        <span class="task-name px-2 d-flex justify-content-start">{{
+          item.task_name
+        }}</span>
+        <span class="task-name px-2 d-flex justify-content-start" *ngIf="item.status !== 'No Task'"
+          >Task Name</span
+        >
+      </div>
+    </div>
+  </div>
+</div>

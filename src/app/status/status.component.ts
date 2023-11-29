@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StatusService } from './status.service';
 import { Status } from './status.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-status',
@@ -8,7 +9,7 @@ import { Status } from './status.model';
   styleUrls: ['./status.component.scss'],
 })
 export class StatusComponent implements OnInit {
-  constructor(private statusService: StatusService) {}
+  constructor(private statusService: StatusService, public router: Router) {}
 
   public status: Status[] = [];
   public currentTime: string = '';
@@ -16,6 +17,7 @@ export class StatusComponent implements OnInit {
   public active = 0;
   public noTask = 0;
   public deActivated = 0;
+  public id = false;
 
   ngOnInit(): void {
     // Initial call to fetchStatus
@@ -33,6 +35,7 @@ export class StatusComponent implements OnInit {
           status: data.status,
           total_time: data.total_time,
           task_id: data.task_id,
+          task_name: data.task_name,
           team: data.team,
         }));
         // Update counts after receiving new data
@@ -54,11 +57,11 @@ export class StatusComponent implements OnInit {
     this.status.forEach((item) => {
       if (
         item.status === 'Programming' ||
-        item.status === 'Testing' && !((item.task_id === '10891')) ||
+        (item.status === 'Testing' && !(item.task_id === '10891')) ||
         item.status === 'Designing (UI/UX)' ||
         item.status === 'Meeting' ||
         item.status === 'Debugging' ||
-        item.status === 'Management' 
+        item.status === 'Management'
       ) {
         console.log(this.active);
 

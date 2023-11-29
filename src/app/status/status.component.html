@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="router.url === '/user_status'">
   <div class="title">
     <div class="text">Member List</div>
     <div class="flex-end">
@@ -175,3 +175,5 @@
     </div>
   </div>
 </div>
+
+<router-outlet></router-outlet>
