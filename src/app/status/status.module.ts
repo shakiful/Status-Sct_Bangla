@@ -4,7 +4,6 @@ import { StatusComponent } from './status.component';
 import { StatusRoutingModule } from './status-routing.module';
 import { CustomPipeModule } from '../custom-pipes/custom.pipe.module';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [StatusComponent],
@@ -13,7 +12,6 @@ import { FormsModule } from '@angular/forms';
     StatusRoutingModule,
     CustomPipeModule,
     CommonModule,
-    FormsModule,
   ],
 })
 export class StatusModule {}

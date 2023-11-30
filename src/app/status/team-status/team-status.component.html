@@ -131,22 +131,37 @@
             ><span class="time">{{ item.total_time }}</span>
           </div>
         </div>
-        <div
-          class="d-flex px-2"
-          [ngStyle]="{
-            'justify-content':
-              item.status === 'No Task' ? 'center' : 'space-between'
-          }"
-        >
-          <span class="name">{{ item.user_name | shorten : 23 }}</span>
-          <span class="name">{{ item.task_id }}</span>
+        <div class="d-flex flex-column">
+          <div
+            class="d-flex px-2"
+            [ngStyle]="{
+              'height':
+              item.task_name?.length <= 59 ? '67px' : '45px',
+              'justify-content':
+                item.status === 'No Task' ? 'center' : 'space-between',
+            }"
+          >
+            <span class="name">{{ item.user_name | shorten : 23 }}</span>
+            <span class="name">{{ item.task_id }}</span>
+          </div>
+          <span
+            *ngIf="item.status !== 'No Task'"
+            class="task-name px-2 py-2 d-flex text-start"
+            [ngClass]="{
+              'red-background': item.task_id === '10891',
+              'blue-background': item.status === 'Meeting',
+              'green-background':
+                item.status === 'Programming' ||
+                'Testing' ||
+                'Designing (UI/UX)'
+            }"
+            [ngStyle]="{
+              'justify-content':
+                item.task_name.length <= 13 ? 'center' : 'start'
+            }"
+            >{{ item.task_name }}</span
+          >
         </div>
-        <span class="task-name px-2 d-flex justify-content-start">{{
-          item.task_name
-        }}</span>
-        <span class="task-name px-2 d-flex justify-content-start" *ngIf="item.status !== 'No Task'"
-          >Task Name</span
-        >
       </div>
     </div>
   </div>
