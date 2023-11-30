@@ -106,24 +106,8 @@
 
   <div class="flex-container">
     <div *ngFor="let item of status">
-      <div
-        class="height"
-        [ngClass]="{
-          'dark-green-background':
-            item.status === 'Programming' || 'Testing' || 'Designing (UI/UX)',
-          'dark-grey-background': item.status === 'No Task',
-          'dark-red-background': item.task_id === '10891',
-          'dark-blue-background': item.status === 'Meeting'
-        }"
-      >
-        <div
-          class="task"
-          [ngClass]="{
-            'grey-background': item.status === 'No Task',
-            'red-background': item.task_id === '10891',
-            'blue-background': item.status === 'Meeting'
-          }"
-        >
+      <div class="height" [ngClass]="darkBackgroundColors(item)">
+        <div class="task" [ngClass]="backgroundColors(item)">
           <div>{{ item.status | status_deactivate }}</div>
           <div class="alignment">
             <span class="d-flex"
@@ -134,9 +118,10 @@
         <div class="d-flex flex-column">
           <div
             class="d-flex px-2"
+            [ngClass]="{
+              'user_name_height': item.task_name?.length <= 59,
+            }"
             [ngStyle]="{
-              'height':
-              item.task_name?.length <= 59 ? '67px' : '45px',
               'justify-content':
                 item.status === 'No Task' ? 'center' : 'space-between',
             }"
@@ -147,14 +132,7 @@
           <span
             *ngIf="item.status !== 'No Task'"
             class="task-name px-2 py-2 d-flex text-start"
-            [ngClass]="{
-              'red-background': item.task_id === '10891',
-              'blue-background': item.status === 'Meeting',
-              'green-background':
-                item.status === 'Programming' ||
-                'Testing' ||
-                'Designing (UI/UX)'
-            }"
+            [ngClass]="taskNameStyleCondition(item)"
             [ngStyle]="{
               'justify-content':
                 item.task_name.length <= 13 ? 'center' : 'start'

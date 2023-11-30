@@ -8,8 +8,6 @@
   justify-content: flex-end;
 }
 
-
-
 .flex-container {
   display: grid;
   grid-template-rows: repeat(6, 0.1fr);
@@ -31,6 +29,10 @@
 
 .height {
   height: 144px;
+}
+
+.user_name_height {
+  height: 67px;
 }
 
 .task {
@@ -220,6 +222,10 @@
     height: 130px;
   }
 
+  .user_name_height {
+    height: 58px;
+  }
+
   .task {
     height: 36px;
     line-height: 26px;
@@ -231,9 +237,11 @@
   }
 
   .task-name {
-    font-size: 16px;
+    // align-items: flex-end;
+    font-size: 18px;
     font-weight: 600;
-    line-height: 17px;
+    line-height: 19px;
+    border-radius: 0px 0px 8px 8px;
   }
 
   .clock {

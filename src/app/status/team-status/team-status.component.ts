@@ -47,6 +47,35 @@ export class TeamStatusComponent implements OnInit {
   public noTask = 0;
   public deActivated = 0;
 
+  darkBackgroundColors(item: Status) {
+    return {
+      'dark-green-background':
+        item.status === 'Programming' ||
+        item.status === 'Testing' ||
+        item.status === 'Designing (UI/UX)',
+      'dark-grey-background': item.status === 'No Task',
+      'dark-red-background': item.task_id === '10891',
+      'dark-blue-background': item.status === 'Meeting',
+    };
+  }
+
+  backgroundColors(item: Status) {
+    return {
+      'grey-background': item.status === 'No Task',
+      'red-background': item.task_id === '10891',
+      'blue-background': item.status === 'Meeting',
+    };
+  }
+
+  taskNameStyleCondition(item: Status) {
+    return {
+      'red-background': item.task_id === '10891',
+      'blue-background': item.status === 'Meeting',
+      'green-background':
+        item.status === 'Programming' || 'Testing' || 'Designing (UI/UX)',
+    };
+  }
+
   getTeamNumber(teamName: string): number {
     switch (teamName) {
       case 'Shopfloor Suite':
