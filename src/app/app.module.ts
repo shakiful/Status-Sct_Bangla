@@ -8,9 +8,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { StatusModule } from './status/status.module';
 import { TeamStatusModule } from './status/team-status/team-status.module';
 import { CustomPipeModule } from './custom-pipes/custom.pipe.module';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ModalComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -52,7 +52,10 @@ export class TeamStatusComponent implements OnInit {
       'dark-green-background':
         item.status === 'Programming' ||
         item.status === 'Testing' ||
-        item.status === 'Designing (UI/UX)',
+        item.status === 'Designing (UI/UX)' ||
+        item.status === 'Analysis' ||
+        item.status === 'Management' ||
+        item.status === 'Debugging',
       'dark-grey-background': item.status === 'No Task',
       'dark-red-background': item.task_id === '10891',
       'dark-blue-background': item.status === 'Meeting',
