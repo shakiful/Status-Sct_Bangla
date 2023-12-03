@@ -98,7 +98,7 @@ export class TeamStatusComponent implements OnInit {
     this.statusService.fetchStatus().subscribe({
       next: (response: any) => {
         const filteredResponse = response.filter((data: any) => {
-          const teamId = this.getTeamNumber(data.team);
+          const teamId = this.getTeamNumber(data.area);
           return teamId === this.id; // Filter data based on the provided ID
         });
 
@@ -108,7 +108,7 @@ export class TeamStatusComponent implements OnInit {
           total_time: data.total_time,
           task_id: data.task_id,
           task_name: data.task_name,
-          team: this.getTeamNumber(data.team),
+          team: this.getTeamNumber(data.area),
         }));
 
         // Update counts after receiving new data
