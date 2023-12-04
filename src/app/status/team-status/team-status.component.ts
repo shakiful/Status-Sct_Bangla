@@ -37,12 +37,10 @@ export class TeamStatusComponent implements OnInit {
   }
 
   navigateToDetails(id: number | null): void {
-    if (id) {
-      console.log(id);
-
+    if (id && id >= 1 && id <= 4) {
       this.router.navigate(['user_status/details', id]);
     } else {
-      this.router.navigate(['user_status/details']);
+      this.router.navigate(['user_status/details', 1]); // Redirect to default value if id is null or outside the range
     }
   }
 
@@ -92,12 +90,12 @@ export class TeamStatusComponent implements OnInit {
         return 1;
       case 'SAP':
         return 2;
-      case 'Design':
+      case 'UI/UX Design':
         return 3;
-      case 'QA':
+      case 'SQA':
         return 4;
       default:
-        return 0; // Return 0 or handle other cases as needed
+        return 0;
     }
   }
 
@@ -158,16 +156,12 @@ export class TeamStatusComponent implements OnInit {
     console.log(this.active);
   }
 
-  openModal(data: Status) {
+  openModal(data: Status[]) {
     let config = {
       animation: true,
       backdrop: true,
       data: {
-        user_name: data.user_name,
-        status: data.status,
-        total_time: data.total_time,
-        task_id: data.task_id,
-        task_name: data.task_name,
+        data,
       },
       ignoreBackdropClick: false,
       keyboard: true,

@@ -1,6 +1,5 @@
-<div class="modal-content">
+<div class="modal-content modal-fullscreen">
   <div class="modal-header">
-    <h5 class="modal-title">{{ user_name }}</h5>
     <button
       type="button"
       class="btn-close"
@@ -9,9 +8,25 @@
     ></button>
   </div>
   <div class="modal-body">
-    <p>{{ status }}</p>
-    <p>{{ total_time }}</p>
-    <p>{{ task_id }}</p>
-    <p>{{ task_name }}</p>
+    <table class="table table-bordered">
+      <thead class="thead-light">
+        <tr>
+          <th>Name</th>
+          <th>Status</th>
+          <th>Total Time</th>
+          <th>Task Id</th>
+          <th>Task Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of data">
+          <td>{{ item.user_name }}</td>
+          <td>{{ item.status }}</td>
+          <td>{{ item.total_time }}</td>
+          <td>{{ item.task_id }}</td>
+          <td>{{ item.task_name }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
+import { Status } from '../status/status.model';
 
 @Component({
   selector: 'app-modal',
@@ -7,11 +8,6 @@ import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
   styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent {
-  user_name: string | null = null;
-  status: string | null = null;
-  total_time: string | null = null;
-  task_id: string | null = null;
-  task_name: string | null = null;
+  data: Status[] | null = null;
   constructor(public modalRef: MdbModalRef<ModalComponent>) {}
-
 }
