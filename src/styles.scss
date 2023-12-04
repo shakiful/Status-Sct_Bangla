@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200&display=swap");
 body {
-  font-family: 'Poppins', sans-serif !important;
+  font-family: "Poppins", sans-serif !important;
   overflow: hidden;
   min-height: 100vh;
   position: relative;
@@ -11,7 +11,8 @@ body {
 }
 
 /* Importing Bootstrap SCSS file. */
-@import "./node_modules/bootstrap/scss/bootstrap";
+// @import "./node_modules/bootstrap/scss/bootstrap";
+@import 'mdb-angular-ui-kit/assets/scss/mdb.scss';
 
 /* Importing Datepicker SCSS file. */
 @import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";

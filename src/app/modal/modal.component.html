@@ -1,19 +1,17 @@
-<div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title">{{ user_name }}</h5>
-      <button
-        type="button"
-        class="btn-close"
-        aria-label="Close"
-        (click)="modalRef.close()"
-      ></button>
-    </div>
-    <div class="modal-body">
-      <p>{{ status }}</p>
-      <p>{{ total_time }}</p>
-      <p>{{ task_id }}</p>
-      <p>{{ task_name }}</p>
-    </div>
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title">{{ user_name }}</h5>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modalRef.close()"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <p>{{ status }}</p>
+    <p>{{ total_time }}</p>
+    <p>{{ task_id }}</p>
+    <p>{{ task_name }}</p>
   </div>
 </div>
