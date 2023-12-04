@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Status } from '../status.model';
 import { StatusService } from '../status.service';
+import { ModalComponent } from 'src/app/modal/modal.component';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 
 @Component({
   selector: 'app-team-status',
@@ -9,12 +11,16 @@ import { StatusService } from '../status.service';
   styleUrls: ['./team-status.component.scss'],
 })
 export class TeamStatusComponent implements OnInit {
+  modalRef: MdbModalRef<ModalComponent> | null = null;
+
   id: number | null = null;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private statusService: StatusService
+    private statusService: StatusService,
+    private modalService: MdbModalService
   ) {}
+
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.id = +params['id'];
@@ -55,7 +61,8 @@ export class TeamStatusComponent implements OnInit {
         item.status === 'Designing (UI/UX)' ||
         item.status === 'Analysis' ||
         item.status === 'Management' ||
-        item.status === 'Debugging',
+        item.status === 'Debugging' ||
+        item.status === 'Documentation',
       'dark-grey-background': item.status === 'No Task',
       'dark-red-background': item.task_id === '10891',
       'dark-blue-background': item.status === 'Meeting',
@@ -81,7 +88,7 @@ export class TeamStatusComponent implements OnInit {
 
   getTeamNumber(teamName: string): number {
     switch (teamName) {
-      case 'Shopfloor Suite':
+      case 'ShopFloor':
         return 1;
       case 'SAP':
         return 2;
@@ -134,7 +141,9 @@ export class TeamStatusComponent implements OnInit {
         item.status === 'Designing (UI/UX)' ||
         item.status === 'Meeting' ||
         item.status === 'Debugging' ||
-        item.status === 'Management'
+        item.status === 'Management' ||
+        item.status === 'Documentation' ||
+        item.status === 'Analysis'
       ) {
         console.log(this.active);
 
@@ -147,5 +156,23 @@ export class TeamStatusComponent implements OnInit {
       }
     });
     console.log(this.active);
+  }
+
+  openModal(data: Status) {
+    let config = {
+      animation: true,
+      backdrop: true,
+      data: {
+        user_name: data.user_name,
+        status: data.status,
+        total_time: data.total_time,
+        task_id: data.task_id,
+        task_name: data.task_name,
+      },
+      ignoreBackdropClick: false,
+      keyboard: true,
+    };
+
+    this.modalRef = this.modalService.open(ModalComponent, config);
   }
 }

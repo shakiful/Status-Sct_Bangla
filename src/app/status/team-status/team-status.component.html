@@ -105,7 +105,7 @@
   <!-- Sidebar end -->
 
   <div class="flex-container">
-    <div *ngFor="let item of status">
+    <div (dblclick)="openModal(item)" *ngFor="let item of status">
       <div class="height" [ngClass]="darkBackgroundColors(item)">
         <div class="task" [ngClass]="backgroundColors(item)">
           <div>{{ item.status | status_deactivate }}</div>
@@ -134,13 +134,13 @@
             class="task-name px-2 py-2 d-flex text-start"
             data-bs-toggle="tooltip"
             data-bs-placement="top"
-            title={{item.task_name}}
+            title="{{ item.task_name }}"
             [ngClass]="taskNameStyleCondition(item)"
             [ngStyle]="{
               'justify-content':
                 item.task_name.length <= 13 ? 'center' : 'start'
             }"
-            >{{ item.task_name | shorten: 115 }}</span
+            >{{ item.task_name | shorten : 115 }}</span
           >
         </div>
       </div>
