@@ -13,7 +13,8 @@ import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 export class TeamStatusComponent implements OnInit {
   modalRef: MdbModalRef<ModalComponent> | null = null;
 
-  id: number | null = null;
+  id: string | null = null;
+  validIDs: number[] | null = null;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -23,9 +24,10 @@ export class TeamStatusComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      this.id = +params['id'];
+      this.id = params['id'];
       console.log(this.id);
-      this.navigateToDetails(this.id);
+      this.handleMultipleIDs(this.id);
+      // this.navigateToDetails(this.id);
       console.log(this.id);
     });
 
@@ -36,11 +38,23 @@ export class TeamStatusComponent implements OnInit {
     this.fetchStatusAndUpdate();
   }
 
-  navigateToDetails(id: number | null): void {
-    if (id && id >= 1 && id <= 4) {
-      this.router.navigate(['user_status/details', id]);
+  handleMultipleIDs(ids: string | null): void {
+    if (ids) {
+      this.validIDs = ids.split(',').map(Number);
+      console.log(this.validIDs);
+
+      if (
+        this.validIDs.map((id) => {
+          if (id <= 0 || id >= 5 || Number.isNaN(id)) {
+            this.router.navigate(['user_status/details', 1]);
+          }
+        })
+      )
+        // this.validIDs = idArray.filter((id) => id >= 1 && id <= 4);
+
+        console.log(this.validIDs);
     } else {
-      this.router.navigate(['user_status/details', 1]); // Redirect to default value if id is null or outside the range
+      this.router.navigate(['user_status/details', 1]); // Redirect to default value if no IDs are provided
     }
   }
 
@@ -104,8 +118,13 @@ export class TeamStatusComponent implements OnInit {
       next: (response: any) => {
         const filteredResponse = response.filter((data: any) => {
           const teamId = this.getTeamNumber(data.area);
-          return teamId === this.id; // Filter data based on the provided ID
+          console.log(teamId);
+
+          console.log(this.validIDs);
+
+          return this.validIDs.includes(teamId); // Filter data based on the provided ID
         });
+        console.log(filteredResponse);
 
         this.status = filteredResponse.map((data: any) => ({
           user_name: data.user_name,
@@ -141,7 +160,7 @@ export class TeamStatusComponent implements OnInit {
         item.status === 'Debugging' ||
         item.status === 'Management' ||
         item.status === 'Documentation' ||
-        item.status === 'Analysis'
+        (item.status === 'Analysis' && !(item.task_id === '10891'))
       ) {
         console.log(this.active);
 
@@ -154,6 +173,7 @@ export class TeamStatusComponent implements OnInit {
       }
     });
     console.log(this.active);
+    console.log(this.noTask);
   }
 
   openModal(data: Status[]) {

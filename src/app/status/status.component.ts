@@ -61,7 +61,9 @@ export class StatusComponent implements OnInit {
         item.status === 'Designing (UI/UX)' ||
         item.status === 'Meeting' ||
         item.status === 'Debugging' ||
-        item.status === 'Management'
+        item.status === 'Management' ||
+        item.status === 'Documentation' ||
+        (item.status === 'Analysis' && !(item.task_id === '10891'))
       ) {
         console.log(this.active);
 
