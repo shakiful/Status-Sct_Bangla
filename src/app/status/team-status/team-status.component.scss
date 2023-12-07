@@ -179,6 +179,11 @@
     brightness(89%) contrast(84%);
 }
 
+.orange-color {
+  filter: invert(64%) sepia(55%) saturate(2029%) hue-rotate(359deg)
+    brightness(103%) contrast(104%);
+}
+
 @media (max-width: 1600px) {
   .title {
     padding: 5px;

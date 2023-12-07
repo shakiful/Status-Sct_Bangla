@@ -50,8 +50,6 @@ export class TeamStatusComponent implements OnInit {
           }
         })
       )
-        // this.validIDs = idArray.filter((id) => id >= 1 && id <= 4);
-
         console.log(this.validIDs);
     } else {
       this.router.navigate(['user_status/details', 1]); // Redirect to default value if no IDs are provided

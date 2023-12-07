@@ -27,7 +27,7 @@
 
 .flex-container {
   display: grid;
-  grid-template-rows: repeat(6, 0.1fr);
+  grid-template-rows: repeat(6, auto);
   // grid-auto-columns: 1fr auto;
   grid-auto-flow: column;
   gap: 15px;
@@ -177,6 +177,11 @@
 .gray-color {
   filter: invert(47%) sepia(10%) saturate(873%) hue-rotate(182deg)
     brightness(89%) contrast(84%);
+}
+
+.orange-color {
+  filter: invert(64%) sepia(55%) saturate(2029%) hue-rotate(359deg)
+    brightness(103%) contrast(104%);
 }
 
 @media (max-width: 1600px) {
@@ -361,5 +366,24 @@
 
   .sidebar-icons {
     height: 25px;
+  }
+
+  @media (max-width: 1280px) {
+    .flex-container > div {
+      width: 260px;
+    }
+
+    .height {
+      height: 121px;
+    }
+
+    .name {
+      line-height: 70px;
+    }
+
+    .sidebar-frame {
+      width: 210px;
+      height: calc(100vh - 73px);
+    }
   }
 }
