@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
-import { Status } from '../status/status.model';
+import { Status } from '../models/status.model';
 
 @Component({
   selector: 'app-modal',

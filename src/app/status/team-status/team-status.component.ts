@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Status } from '../../models/status.model';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Status } from '../status.model';
-import { StatusService } from '../status.service';
+import { StatusService } from '../../services/status.service';
 import { ModalComponent } from 'src/app/modal/modal.component';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 
@@ -15,6 +15,10 @@ export class TeamStatusComponent implements OnInit {
 
   id: string | null = null;
   validIDs: number[] | null = null;
+  public status: Status[];
+  public total;
+  public count;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -25,10 +29,7 @@ export class TeamStatusComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.id = params['id'];
-      console.log(this.id);
-      this.handleMultipleIDs(this.id);
-      // this.navigateToDetails(this.id);
-      console.log(this.id);
+      this.handleMultipleIDs(this.id); //for handling multiple ids
     });
 
     // Initial call to fetchStatus
@@ -38,44 +39,38 @@ export class TeamStatusComponent implements OnInit {
     this.fetchStatusAndUpdate();
   }
 
-  handleMultipleIDs(ids: string | null): void {
+  handleMultipleIDs(ids: string): void {
     if (ids) {
       this.validIDs = ids.split(',').map(Number);
-      console.log(this.validIDs);
-
-      if (
-        this.validIDs.map((id) => {
-          if (id <= 0 || id >= 5 || Number.isNaN(id)) {
-            this.router.navigate(['user_status/details', 1]);
-          }
-        })
-      )
-        console.log(this.validIDs);
+      const ifValidId = this.validIDs.map((id) => {
+        if (id <= 0 || id >= 5 || Number.isNaN(id)) {
+          this.router.navigate(['user_status/details', 1]);
+        }
+      });
+      if (ifValidId) {
+      }
     } else {
       this.router.navigate(['user_status/details', 1]); // Redirect to default value if no IDs are provided
     }
   }
 
-  public status: Status[] = [];
-  public currentTime: string = '';
-  public total = 0;
-  public active = 0;
-  public noTask = 0;
-  public deActivated = 0;
-
   darkBackgroundColors(item: Status) {
+    const status = item.status;
+    const task_id = item.task_id;
+
     return {
-      'dark-green-background':
-        item.status === 'Programming' ||
-        item.status === 'Testing' ||
-        item.status === 'Designing (UI/UX)' ||
-        item.status === 'Analysis' ||
-        item.status === 'Management' ||
-        item.status === 'Debugging' ||
-        item.status === 'Documentation',
-      'dark-grey-background': item.status === 'No Task',
-      'dark-red-background': item.task_id === '10891',
-      'dark-blue-background': item.status === 'Meeting',
+      'dark-green-background': [
+        'Programming',
+        'Testing',
+        'Designing (UI/UX)',
+        'Analysis',
+        'Management',
+        'Debugging',
+        'Documentation',
+      ].includes(status),
+      'dark-grey-background': status === 'No Task',
+      'dark-red-background': task_id === '10891',
+      'dark-blue-background': status === 'Meeting',
     };
   }
 
@@ -116,62 +111,17 @@ export class TeamStatusComponent implements OnInit {
       next: (response: any) => {
         const filteredResponse = response.filter((data: any) => {
           const teamId = this.getTeamNumber(data.area);
-          console.log(teamId);
-
-          console.log(this.validIDs);
-
           return this.validIDs.includes(teamId); // Filter data based on the provided ID
         });
-        console.log(filteredResponse);
 
-        this.status = filteredResponse.map((data: any) => ({
-          user_name: data.user_name,
-          status: data.status,
-          total_time: data.total_time,
-          task_id: data.task_id,
-          task_name: data.task_name,
-          team: this.getTeamNumber(data.area),
-        }));
-
+        this.status = filteredResponse.map((value: any) =>
+          new Status().deserialize(value)
+        );
         // Update counts after receiving new data
-        this.updateStatusCount();
-        this.total = this.status.length; // Update total count here if needed
-        console.log(this.status);
+        this.count = this.statusService.updateStatusCount(this.status);
+        this.total = this.status.length;
       },
-      error: () => {},
     });
-  }
-  updateStatusCount() {
-    // Reset counts
-    this.total = 0;
-    this.active = 0;
-    this.noTask = 0;
-    this.deActivated = 0;
-
-    // Iterate through the status array
-    this.status.forEach((item) => {
-      if (
-        item.status === 'Programming' ||
-        (item.status === 'Testing' && !(item.task_id === '10891')) ||
-        item.status === 'Designing (UI/UX)' ||
-        item.status === 'Meeting' ||
-        item.status === 'Debugging' ||
-        item.status === 'Management' ||
-        item.status === 'Documentation' ||
-        (item.status === 'Analysis' && !(item.task_id === '10891'))
-      ) {
-        console.log(this.active);
-
-        this.active++;
-        console.log(this.active);
-      } else if (item.task_id === '10891') {
-        this.noTask++;
-      } else if (item.status === 'No Task') {
-        this.deActivated++;
-      }
-    });
-    console.log(this.active);
-    console.log(this.noTask);
   }
 
   openModal(data: Status[]) {

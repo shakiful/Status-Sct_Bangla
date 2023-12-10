@@ -62,10 +62,6 @@
   font-weight: 600;
 }
 
-.time {
-  padding: 4px;
-}
-
 .clock {
   height: 27px;
 }
@@ -357,15 +353,15 @@
   }
 
   .sidebar-circle {
-    height: 90px;
+    height: 85px;
   }
 
   .sidebar-circle-small {
-    height: 30px;
+    height: 25px;
   }
 
   .sidebar-icons {
-    height: 25px;
+    height: 20px;
   }
 
   @media (max-width: 1280px) {
@@ -384,6 +380,33 @@
     .sidebar-frame {
       width: 210px;
       height: calc(100vh - 73px);
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .flex-container > div {
+      width: 209px;
+    }
+
+    .height {
+      height: 121px;
+    }
+
+    .name {
+      line-height: 70px;
+    }
+
+    .sidebar-frame {
+      width: 150px;
+      height: calc(100vh - 73px);
+    }
+
+    .clock {
+      height: 20px;
+    }
+
+    .task {
+      padding: 3px;
     }
   }
 }
