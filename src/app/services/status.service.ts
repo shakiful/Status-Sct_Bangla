@@ -20,17 +20,17 @@ export class StatusService {
     return this.http.get<Status>(`${apiUrl}`);
   }
 
-  updateStatusCount(status) {
+  updateStatusCount(status: Status[]) {
     // Reset counts
     this.active = 0;
     this.noTask = 0;
     this.deActivated = 0;
 
     // Iterate through the status array
-    status.map((item) => {
+    status.forEach((item: Status) => {
       const task_id = item.task_id;
       const Status = item.status;
-      const ifActive =
+      const isActive =
         Status === 'Programming' ||
         (Status === 'Testing' && !(task_id === '10891')) ||
         Status === 'Designing (UI/UX)' ||
@@ -40,7 +40,7 @@ export class StatusService {
         Status === 'Documentation' ||
         (Status === 'Analysis' && !(task_id === '10891'));
 
-      if (ifActive) {
+      if (isActive) {
         this.active++;
       } else if (task_id === '10891') {
         this.noTask++;

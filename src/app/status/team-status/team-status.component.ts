@@ -42,15 +42,12 @@ export class TeamStatusComponent implements OnInit {
   handleMultipleIDs(ids: string): void {
     if (ids) {
       this.validIDs = ids.split(',').map(Number);
-      const ifValidId = this.validIDs.map((id) => {
-        if (id <= 0 || id >= 5 || Number.isNaN(id)) {
-          this.router.navigate(['user_status/details', 1]);
-        }
-      });
-      if (ifValidId) {
+      const invalidIDs = this.validIDs.filter(
+        (id) => id <= 0 || id >= 5 || Number.isNaN(id)
+      );
+      if (invalidIDs.length > 0) {
+        this.router.navigate(['user_status/details', 1]); // Navigate with the default ID
       }
-    } else {
-      this.router.navigate(['user_status/details', 1]); // Redirect to default value if no IDs are provided
     }
   }
 
@@ -114,7 +111,7 @@ export class TeamStatusComponent implements OnInit {
           return this.validIDs.includes(teamId); // Filter data based on the provided ID
         });
 
-        this.status = filteredResponse.map((value: any) =>
+        this.status = filteredResponse.map((value: Status) =>
           new Status().deserialize(value)
         );
         // Update counts after receiving new data
