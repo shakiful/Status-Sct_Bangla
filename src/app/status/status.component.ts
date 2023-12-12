@@ -25,12 +25,18 @@ export class StatusComponent implements OnInit {
     this.fetchStatusAndUpdate();
   }
 
+  /**
+   * fetches status from status Service and also updates it,
+   *
+   */
   private fetchStatusAndUpdate(): void {
     this.statusService.fetchStatus().subscribe({
       next: (response: any) => {
-        response.forEach((value: Status) =>
-          this.status.push(new Status().deserialize(value))
+        this.status = response.map((value: Status) =>
+          //deserializes the response data
+          new Status().deserialize(value)
         );
+        // Update counts after receiving new data
         this.count = this.statusService.updateStatusCount(this.status);
         this.total = this.status.length;
       },

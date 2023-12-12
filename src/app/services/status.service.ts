@@ -10,10 +10,6 @@ import { Status } from '../models/status.model';
 export class StatusService {
   constructor(private http: HttpClient) {}
 
-  public active: number;
-  public noTask: number;
-  public deActivated: number;
-
   fetchStatus(): Observable<Status> {
     const apiUrl = `${environment.apiUrl}/task_time_data_service.php?service=get_all_user_status_angular`;
 
@@ -22,12 +18,15 @@ export class StatusService {
 
   updateStatusCount(status: Status[]) {
     // Reset counts
-    this.active = 0;
-    this.noTask = 0;
-    this.deActivated = 0;
+    let active: number = 0;
+    let noTask: number = 0;
+    let deActivated: number = 0;
+
+    console.log(active, noTask, deActivated);
 
     // Iterate through the status array
     status.forEach((item: Status) => {
+      console.log(active, noTask, deActivated);
       const task_id = item.task_id;
       const Status = item.status;
       const isActive =
@@ -40,18 +39,22 @@ export class StatusService {
         Status === 'Documentation' ||
         (Status === 'Analysis' && !(task_id === '10891'));
 
+      console.log(active, noTask, deActivated);
       if (isActive) {
-        this.active++;
+        active++;
+        console.log(active);
       } else if (task_id === '10891') {
-        this.noTask++;
-      } else if (Status === 'No Task') {
-        this.deActivated++;
+        noTask++;
+      } else {
+        deActivated++;
       }
+
+      console.log(active, noTask, deActivated);
     });
     return {
-      active: this.active,
-      noTask: this.noTask,
-      deActivated: this.deActivated,
+      active,
+      noTask,
+      deActivated,
     };
   }
 }
