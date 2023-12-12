@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { StatusService } from '../../services/status.service';
 import { ModalComponent } from 'src/app/modal/modal.component';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { StatusEnum } from 'src/app/shared/statusEnum';
 
 @Component({
   selector: 'app-team-status',
@@ -72,15 +73,9 @@ export class TeamStatusComponent implements OnInit {
     const task_id = item.task_id;
 
     return {
-      'dark-green-background': [
-        'Programming',
-        'Testing',
-        'Designing (UI/UX)',
-        'Analysis',
-        'Management',
-        'Debugging',
-        'Documentation',
-      ].includes(status),
+      'dark-green-background': Object.values(StatusEnum).includes(
+        status as StatusEnum
+      ),
       'dark-grey-background': status === 'No Task',
       'dark-red-background': task_id === '10891',
       'dark-blue-background': status === 'Meeting',
