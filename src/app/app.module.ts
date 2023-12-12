@@ -9,7 +9,6 @@ import { StatusModule } from './status/status.module';
 import { TeamStatusModule } from './status/team-status/team-status.module';
 import { CustomPipeModule } from './custom-pipes/custom.pipe.module';
 
-
 @NgModule({
   declarations: [AppComponent],
   imports: [

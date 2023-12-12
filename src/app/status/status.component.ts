@@ -13,8 +13,8 @@ export class StatusComponent implements OnInit {
 
   public status: Status[] = [];
   public currentTime: string = '';
-  public total;
-  public count;
+  public total = 0;
+  public count = { active: 0, noTask: 0, deActivated: 0 };
   public id = false;
 
   ngOnInit(): void {

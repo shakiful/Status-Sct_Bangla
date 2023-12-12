@@ -16,8 +16,8 @@ export class TeamStatusComponent implements OnInit {
   id: string | null = null;
   validIDs: number[] | null = null;
   public status: Status[];
-  public total;
-  public count;
+  public total = 0;
+  public count = { active: 0, noTask: 0, deActivated: 0 };
 
   constructor(
     private route: ActivatedRoute,
