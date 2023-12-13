@@ -6,4 +6,5 @@ export enum StatusEnum {
   Management = 'Management',
   Debugging = 'Debugging',
   Documentation = 'Documentation',
+  Meeting = 'Meeting',
 }
