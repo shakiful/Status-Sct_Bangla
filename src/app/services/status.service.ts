@@ -111,8 +111,12 @@ export class StatusService {
     if (status && leaveStatus) {
       status.forEach((value: Status) => {
         leaveStatus.map((data: LeaveStatus) => {
-          if (value.user_id === data.emp_id) {
-            value.status = 'On Leave';
+          if (!value.task_id) {
+            if (value.user_id === data.emp_id) {
+              value.status = 'On Leave';
+            }
+          } else {
+            value.status;
           }
         });
       });
