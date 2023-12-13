@@ -46,4 +46,57 @@ export class StatusService {
       deActivated,
     };
   }
+
+  /**
+   * Determines the background color classes based on the status and task ID of a given item for the body of that component.
+   *
+   * @param item - The item is using 'status' and 'task_id' properties of Status Object.
+   * @returns An object containing CSS class names corresponding to different background colors given if they meet the  condition.
+   *
+   *
+   */
+  darkBackgroundColors(item: Status) {
+    const status = item.status;
+    const task_id = item.task_id;
+
+    return {
+      'dark-green-background': Object.values(StatusEnum).includes(
+        status as StatusEnum
+      ),
+      'dark-grey-background': status === 'No Task',
+      'dark-red-background': task_id === '10891',
+      'dark-blue-background': status === 'Meeting',
+    };
+  }
+
+  /**
+   * Determines the background color classes based on the status and task ID of a given item.
+   *
+   * @param item - The item is using 'status' and 'task_id' properties of Status Object.
+   * @returns CSS Class names if the condition is met
+   */
+
+  backgroundColors(item: Status) {
+    return {
+      'grey-background': item.status === 'No Task',
+      'red-background': item.task_id === '10891',
+      'blue-background': item.status === 'Meeting',
+    };
+  }
+
+  /**
+   *Determines the background color classes based on the status and task ID of a given item for Task Name.
+   *
+   * @param item - The item is using 'status' and 'task_id' properties of Status Object.
+   * @returns CSS Class names if the condition is met
+   */
+
+  taskNameStyleCondition(item: Status) {
+    return {
+      'red-background': item.task_id === '10891',
+      'blue-background': item.status === 'Meeting',
+      'green-background':
+        item.status === 'Programming' || 'Testing' || 'Designing (UI/UX)',
+    };
+  }
 }

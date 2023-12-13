@@ -2,6 +2,7 @@ import { StatusService } from './../services/status.service';
 import { Component, OnInit } from '@angular/core';
 import { Status } from '../models/status.model';
 import { Router } from '@angular/router';
+import { StatusEnum } from '../shared/statusEnum';
 
 @Component({
   selector: 'app-status',
@@ -23,6 +24,38 @@ export class StatusComponent implements OnInit {
       this.fetchStatusAndUpdate();
     }, 200000);
     this.fetchStatusAndUpdate();
+  }
+
+  /**
+   * Determines the background color classes based on the status and task ID of a given item for the body of that component.
+   *
+   * @param item - The item is the properties of Status Object.
+   * @returns An object containing CSS class names corresponding to different background colors given if they meet the condition from status Service.
+   */
+  darkBackgroundColors(item: Status) {
+    return this.statusService.darkBackgroundColors(item);
+  }
+
+  /**
+   * Determines the background color classes based on the status and task ID of a given item.
+   *
+   * @param item - The item is the properties of Status Object.
+   * @returns CSS Class names if the condition is met from status Service
+   */
+
+  backgroundColors(item: Status) {
+    return this.statusService.backgroundColors(item);
+  }
+
+  /**
+   *Determines the background color classes based on the status and task ID of a given item for Task Name.
+   *
+   * @param item - The item is the properties of Status Object.
+   * @returns CSS Class names if the condition is met from status Service
+   */
+
+  taskNameStyleCondition(item: Status) {
+    return this.statusService.taskNameStyleCondition(item);
   }
 
   /**

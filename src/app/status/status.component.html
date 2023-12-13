@@ -116,24 +116,8 @@
 
     <div class="flex-container">
       <div *ngFor="let item of status">
-        <div
-          class="height"
-          [ngClass]="{
-            'dark-green-background':
-              item.status === 'Programming' || 'Testing' || 'Designing (UI/UX)',
-            'dark-grey-background': item.status === 'No Task',
-            'dark-red-background': item.task_id === '10891',
-            'dark-blue-background': item.status === 'Meeting'
-          }"
-        >
-          <div
-            class="task"
-            [ngClass]="{
-              'grey-background': item.status === 'No Task',
-              'red-background': item.task_id === '10891',
-              'blue-background': item.status === 'Meeting'
-            }"
-          >
+        <div class="height" [ngClass]="darkBackgroundColors(item)">
+          <div class="task" [ngClass]="backgroundColors(item)">
             <div>{{ item.status | status_deactivate }}</div>
             <div class="alignment">
               <span class="d-flex"
