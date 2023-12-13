@@ -115,8 +115,6 @@ export class StatusService {
             if (value.user_id === data.emp_id) {
               value.status = 'On Leave';
             }
-          } else {
-            value.status;
           }
         });
       });
