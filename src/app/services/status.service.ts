@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Status } from '../models/status.model';
 import { StatusEnum } from '../shared/statusEnum';
+import { LeaveStatus } from '../models/leaveStatus.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,9 +13,15 @@ export class StatusService {
   constructor(private http: HttpClient) {}
 
   fetchStatus(): Observable<Status> {
-    const apiUrl = `${environment.apiUrl}/task_time_data_service.php?service=get_all_user_status_angular`;
+    const apiUrl = `${environment.statusApiUrl}/task_time_data_service.php?service=get_all_user_status_angular`;
 
     return this.http.get<Status>(`${apiUrl}`);
+  }
+
+  fetchLeaveStatusData(date: string): Observable<LeaveStatus> {
+    const apiUrl = `${environment.leaveStatusApiUrl}/employee?start_date=${date}&end_date=${date}&user_id=`;
+
+    return this.http.get<LeaveStatus>(`${apiUrl}`);
   }
 
   updateStatusCount(status: Status[]) {
@@ -33,7 +40,6 @@ export class StatusService {
 
       if (isActive) {
         active++;
-        console.log(active);
       } else if (task_id === '10891') {
         noTask++;
       } else {
@@ -63,7 +69,7 @@ export class StatusService {
       'dark-green-background': Object.values(StatusEnum).includes(
         status as StatusEnum
       ),
-      'dark-grey-background': status === 'No Task',
+      'dark-grey-background': status === 'No Task' || status === 'On Leave',
       'dark-red-background': task_id === '10891',
       'dark-blue-background': status === 'Meeting',
     };
@@ -78,7 +84,8 @@ export class StatusService {
 
   backgroundColors(item: Status) {
     return {
-      'grey-background': item.status === 'No Task',
+      'grey-background':
+        item.status === 'No Task' || item.status === 'On Leave',
       'red-background': item.task_id === '10891',
       'blue-background': item.status === 'Meeting',
     };
@@ -98,5 +105,18 @@ export class StatusService {
       'green-background':
         item.status === 'Programming' || 'Testing' || 'Designing (UI/UX)',
     };
+  }
+
+  onLeaveCheck(status: Status[], leaveStatus: LeaveStatus[]): Status[] {
+    if (status && leaveStatus) {
+      status.forEach((value: Status) => {
+        leaveStatus.map((data: LeaveStatus) => {
+          if (value.user_id === data.emp_id) {
+            value.status = 'On Leave';
+          }
+        });
+      });
+    }
+    return status;
   }
 }

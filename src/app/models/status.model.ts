@@ -6,6 +6,8 @@ export class Status {
   public task_id?: string;
   public task_name?: string;
   public team?: number;
+  public user_id?: number;
+  public updated_at?: Date;
 
   deserialize(input: Status): Status {
     Object.assign(this, input);

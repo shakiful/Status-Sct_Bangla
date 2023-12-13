@@ -123,14 +123,14 @@
             }"
             [ngStyle]="{
               'justify-content':
-                item.status === 'No Task' ? 'center' : 'space-between',
+                item.status === 'No Task' || item.status === 'On Leave' ? 'center' : 'space-between',
             }"
           >
             <span class="name">{{ item.user_name | shorten : 23 }}</span>
             <span class="name">{{ item.task_id }}</span>
           </div>
           <span
-            *ngIf="item.status !== 'No Task'"
+            *ngIf="item.status !== 'No Task' && item.status !== 'On Leave'"
             class="task-name px-2 py-2 d-flex text-start"
             data-bs-toggle="tooltip"
             data-bs-placement="top"

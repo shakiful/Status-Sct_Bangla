@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { StatusService } from '../../services/status.service';
 import { ModalComponent } from 'src/app/modal/modal.component';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
-import { StatusEnum } from 'src/app/shared/statusEnum';
+import { LeaveStatus } from 'src/app/models/leaveStatus.model';
 
 @Component({
   selector: 'app-team-status',
@@ -16,9 +16,11 @@ export class TeamStatusComponent implements OnInit {
 
   id: string | null = null;
   validIDs: number[] | null = null;
+  public leaveStatus: LeaveStatus[];
   public status: Status[];
   public total = 0;
   public count = { active: 0, noTask: 0, deActivated: 0 };
+  public date: string = new Date().toISOString().split('T')[0];
 
   constructor(
     private route: ActivatedRoute,
@@ -35,8 +37,10 @@ export class TeamStatusComponent implements OnInit {
 
     // Initial call to fetchStatus
     setInterval(() => {
+      this.fetchLeaveStatus(this.date);
       this.fetchStatusAndUpdate();
     }, 200000);
+    this.fetchLeaveStatus(this.date);
     this.fetchStatusAndUpdate();
   }
 
@@ -123,17 +127,35 @@ export class TeamStatusComponent implements OnInit {
       next: (response: any) => {
         //filters the response data from api
         //returns Filter data based on the provided ID
-        const filteredResponse = response.filter((data: any) => {
+        let filteredResponse = response.filter((data: any) => {
           const teamId = this.getTeamNumber(data.area);
           return this.validIDs.includes(teamId); // Filter data based on the provided ID
         });
+
+        filteredResponse = this.statusService.onLeaveCheck(
+          filteredResponse,
+          this.leaveStatus
+        );
+
         //deserializes the filteredResponse data
         this.status = filteredResponse.map((value: Status) =>
           new Status().deserialize(value)
         );
+
         // Update counts after receiving new data
         this.count = this.statusService.updateStatusCount(this.status);
         this.total = this.status.length;
+      },
+    });
+  }
+
+  private fetchLeaveStatus(date: string): void {
+    this.statusService.fetchLeaveStatusData(date).subscribe({
+      next: (response: any) => {
+        this.leaveStatus = response.leaves.map((value: LeaveStatus) =>
+          //deserializes the response data
+          new LeaveStatus().deserialize(value)
+        );
       },
     });
   }

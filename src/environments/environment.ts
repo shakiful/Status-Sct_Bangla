@@ -1,4 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://app.schertech.com/task_visu_dev/php',
+  statusApiUrl: 'https://app.schertech.com/task_visu_dev/php',
+  leaveStatusApiUrl: 'https://tv.sct-bangla.com/leave',
 };
