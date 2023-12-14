@@ -6,7 +6,6 @@ import { CustomPipeModule } from 'src/app/custom-pipes/custom.pipe.module';
 import { CommonModule } from '@angular/common';
 import { ModalComponent } from 'src/app/modal/modal.component';
 import { MdbModalService } from 'mdb-angular-ui-kit/modal';
-import { StatusEnum } from 'src/app/shared/statusEnum';
 
 @NgModule({
   declarations: [TeamStatusComponent, ModalComponent],

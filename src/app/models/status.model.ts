@@ -9,7 +9,7 @@ export class Status {
   public user_id?: number;
   public updated_at?: Date;
 
-  deserialize(input: Status): Status {
+  deserialize(input: any) {
     Object.assign(this, input);
     return this;
   }

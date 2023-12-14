@@ -3,6 +3,7 @@ import { StatusService } from './../services/status.service';
 import { Component, OnInit } from '@angular/core';
 import { Status } from '../models/status.model';
 import { Router } from '@angular/router';
+import { HelperFunction } from '../shared/Class/helperFunction';
 
 @Component({
   selector: 'app-status',
@@ -10,7 +11,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./status.component.scss'],
 })
 export class StatusComponent implements OnInit {
-  constructor(private statusService: StatusService, public router: Router) {}
+  constructor(
+    private statusService: StatusService,
+    public router: Router,
+    private helperFunction: HelperFunction
+  ) {}
 
   public status: Status[];
   public leaveStatus: LeaveStatus[];
@@ -37,7 +42,7 @@ export class StatusComponent implements OnInit {
    * @returns An object containing CSS class names corresponding to different background colors given if they meet the condition from status Service.
    */
   darkBackgroundColors(item: Status) {
-    return this.statusService.darkBackgroundColors(item);
+    return this.helperFunction.darkBackgroundColors(item);
   }
 
   /**
@@ -48,7 +53,7 @@ export class StatusComponent implements OnInit {
    */
 
   backgroundColors(item: Status) {
-    return this.statusService.backgroundColors(item);
+    return this.helperFunction.backgroundColors(item);
   }
 
   /**
@@ -59,17 +64,16 @@ export class StatusComponent implements OnInit {
    */
 
   taskNameStyleCondition(item: Status) {
-    return this.statusService.taskNameStyleCondition(item);
+    return this.helperFunction.taskNameStyleCondition(item);
   }
 
   /**
    * fetches status from status Service and also updates it,
-   *
    */
   private fetchStatusAndUpdate(): void {
     this.statusService.fetchStatus().subscribe({
       next: (response: any) => {
-        const checkedData = this.statusService.onLeaveCheck(
+        const checkedData = this.helperFunction.onLeaveCheck(
           response,
           this.leaveStatus
         );
@@ -80,7 +84,7 @@ export class StatusComponent implements OnInit {
         );
 
         // Update counts after receiving new data
-        this.count = this.statusService.updateStatusCount(this.status);
+        this.count = this.helperFunction.updateStatusCount(this.status);
         this.total = this.status.length;
       },
     });

@@ -5,7 +5,7 @@ export class LeaveStatus {
   public slot?: string;
   public leave_date?: Date;
 
-  deserialize(input: LeaveStatus): LeaveStatus {
+  deserialize(input: any) {
     Object.assign(this, input);
     return this;
   }

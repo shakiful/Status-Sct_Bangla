@@ -5,6 +5,7 @@ import { StatusService } from '../../services/status.service';
 import { ModalComponent } from 'src/app/modal/modal.component';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { LeaveStatus } from 'src/app/models/leaveStatus.model';
+import { HelperFunction } from 'src/app/shared/Class/helperFunction';
 
 @Component({
   selector: 'app-team-status',
@@ -26,7 +27,8 @@ export class TeamStatusComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private statusService: StatusService,
-    private modalService: MdbModalService
+    private modalService: MdbModalService,
+    private helperFunction: HelperFunction
   ) {}
 
   ngOnInit(): void {
@@ -48,7 +50,6 @@ export class TeamStatusComponent implements OnInit {
    * handles multiple ids or single id
    *
    * @param ids id or ids value given in the url
-   *
    */
   handleMultipleIDs(ids: string): void {
     if (ids) {
@@ -71,7 +72,7 @@ export class TeamStatusComponent implements OnInit {
    * @returns An object containing CSS class names corresponding to different background colors given if they meet the condition from status Service.
    */
   darkBackgroundColors(item: Status) {
-    return this.statusService.darkBackgroundColors(item);
+    return this.helperFunction.darkBackgroundColors(item);
   }
 
   /**
@@ -82,7 +83,7 @@ export class TeamStatusComponent implements OnInit {
    */
 
   backgroundColors(item: Status) {
-    return this.statusService.backgroundColors(item);
+    return this.helperFunction.backgroundColors(item);
   }
 
   /**
@@ -93,7 +94,7 @@ export class TeamStatusComponent implements OnInit {
    */
 
   taskNameStyleCondition(item: Status) {
-    return this.statusService.taskNameStyleCondition(item);
+    return this.helperFunction.taskNameStyleCondition(item);
   }
 
   /**
@@ -132,7 +133,7 @@ export class TeamStatusComponent implements OnInit {
           return this.validIDs.includes(teamId); // Filter data based on the provided ID
         });
 
-        filteredResponse = this.statusService.onLeaveCheck(
+        filteredResponse = this.helperFunction.onLeaveCheck(
           filteredResponse,
           this.leaveStatus
         );
@@ -143,7 +144,7 @@ export class TeamStatusComponent implements OnInit {
         );
 
         // Update counts after receiving new data
-        this.count = this.statusService.updateStatusCount(this.status);
+        this.count = this.helperFunction.updateStatusCount(this.status);
         this.total = this.status.length;
       },
     });
