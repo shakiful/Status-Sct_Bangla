@@ -1,6 +1,6 @@
 import { LeaveStatus } from '../../models/leaveStatus.model';
 import { Status } from '../../models/status.model';
-import { StatusEnum } from '../Enum/statusEnum';
+import { StatusEnum } from '../enums/statusEnum';
 
 export class HelperFunction {
   updateStatusCount(status: Status[]) {
@@ -38,10 +38,9 @@ export class HelperFunction {
    * @param item - The item is using 'status' and 'task_id' properties of Status Object.
    * @returns An object containing CSS class names corresponding to different background colors given if they meet the  condition.
    */
-  darkBackgroundColors(item: Status) {
+  getDarkBackgroundColors(item: Status) {
     const status = item.status;
     const task_id = item.task_id;
-
     return {
       'dark-green-background': Object.values(StatusEnum).includes(
         status as StatusEnum
@@ -58,12 +57,12 @@ export class HelperFunction {
    * @param item - The item is using 'status' and 'task_id' properties of Status Object.
    * @returns CSS Class names if the condition is met
    */
-
-  backgroundColors(item: Status) {
+  getBackgroundColors(item: Status) {
     return {
       'grey-background':
-        item.status === 'No Task' || item.status === 'On Leave',
-      'red-background': item.task_id === '10891',
+        (item.status === 'No Task' && item.task_id === null) ||
+        item.status === 'On Leave',
+      'red-background': item.task_id && item.status === 'No Task',
       'blue-background': item.status === 'Meeting',
     };
   }
@@ -74,16 +73,21 @@ export class HelperFunction {
    * @param item - The item is using 'status' and 'task_id' properties of Status Object.
    * @returns CSS Class names if the condition is met
    */
-
-  taskNameStyleCondition(item: Status) {
+  getTaskNameStyleCondition(item: Status) {
     return {
-      'red-background': item.task_id === '10891',
+      'red-background': item.task_id && item.status === 'No Task',
       'blue-background': item.status === 'Meeting',
       'green-background':
         item.status === 'Programming' || 'Testing' || 'Designing (UI/UX)',
     };
   }
 
+  /**
+   *Checks if The user is on leave or not
+   * @param status - status contains the array of Status Object
+   * @param leaveStatus - leaveStatus contains the array of LeaveStatus Object
+   * @returns the status of the employee
+   */
   onLeaveCheck(status: Status[], leaveStatus: LeaveStatus[]): Status[] {
     if (status && leaveStatus) {
       status.forEach((value: Status) => {

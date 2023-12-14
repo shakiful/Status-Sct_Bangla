@@ -11,20 +11,24 @@
     <table class="table table-bordered">
       <thead class="thead-light">
         <tr>
-          <th>Name</th>
+          <th>User Id</th>
+          <th>Start Time</th>
+          <th>End Time</th>
           <th>Status</th>
-          <th>Total Time</th>
-          <th>Task Id</th>
-          <th>Task Name</th>
+          <th>Problem</th>
+          <th>Id</th>
+          <th>Elapsed Mins</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of data">
-          <td>{{ item.user_name }}</td>
-          <td>{{ item.status }}</td>
-          <td>{{ item.total_time }}</td>
-          <td>{{ item.task_id }}</td>
-          <td>{{ item.task_name }}</td>
+        <tr *ngFor="let item of data | keyvalue">
+          <td>{{ item.value['user_id'] }}</td>
+          <td>{{ item.value['start_time'] }}</td>
+          <td>{{ item.value['end_time'] }}</td>
+          <td>{{ item.value['status'] }}</td>
+          <td>{{ item.value['problem'] }}</td>
+          <td>{{ item.value['id'] }}</td>
+          <td>{{ item.value['elapsed_mins'] }}</td>
         </tr>
       </tbody>
     </table>

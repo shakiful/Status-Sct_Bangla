@@ -22,4 +22,10 @@ export class StatusService {
 
     return this.http.get<LeaveStatus>(`${apiUrl}`);
   }
+
+  fetchModalData(id: number): Observable<LeaveStatus> {
+    const apiUrl = `${environment.statusApiUrl}/task_time_data_service.php?service=get_user_today_activity&user_id=${id}`;
+
+    return this.http.get<LeaveStatus>(`${apiUrl}`);
+  }
 }

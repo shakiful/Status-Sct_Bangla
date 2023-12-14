@@ -5,7 +5,8 @@ import { StatusService } from '../../services/status.service';
 import { ModalComponent } from 'src/app/modal/modal.component';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { LeaveStatus } from 'src/app/models/leaveStatus.model';
-import { HelperFunction } from 'src/app/shared/Class/helperFunction';
+import { HelperFunction } from 'src/app/shared/classes/helperFunction';
+import { UserActivity } from 'src/app/models/userActivity.model';
 
 @Component({
   selector: 'app-team-status',
@@ -19,6 +20,7 @@ export class TeamStatusComponent implements OnInit {
   validIDs: number[] | null = null;
   public leaveStatus: LeaveStatus[];
   public status: Status[];
+  public userActivityData: UserActivity[];
   public total = 0;
   public count = { active: 0, noTask: 0, deActivated: 0 };
   public date: string = new Date().toISOString().split('T')[0];
@@ -31,7 +33,7 @@ export class TeamStatusComponent implements OnInit {
     private helperFunction: HelperFunction
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.route.params.subscribe((params) => {
       this.id = params['id'];
       this.handleMultipleIDs(this.id); //for handling multiple ids
@@ -47,18 +49,18 @@ export class TeamStatusComponent implements OnInit {
   }
 
   /**
-   * handles multiple ids or single id
+   * Handles multiple ids or single id
    *
    * @param ids id or ids value given in the url
    */
-  handleMultipleIDs(ids: string): void {
+  handleMultipleIDs(ids: string) {
     if (ids) {
       this.validIDs = ids.split(',').map(Number); // splitting ids and converting into number
-      // filters invalidIds
+      // Filters invalidIds
       const invalidIDs = this.validIDs.filter(
         (id) => id <= 0 || id >= 5 || Number.isNaN(id)
       );
-      // handling if invalid Id is given
+      // Handling if invalid Id is given
       if (invalidIDs.length > 0) {
         this.router.navigate(['user_status/details', 1]); // Navigate with the default ID
       }
@@ -71,8 +73,8 @@ export class TeamStatusComponent implements OnInit {
    * @param item - The item is the properties of Status Object.
    * @returns An object containing CSS class names corresponding to different background colors given if they meet the condition from status Service.
    */
-  darkBackgroundColors(item: Status) {
-    return this.helperFunction.darkBackgroundColors(item);
+  getDarkBackgroundColors(item: Status) {
+    return this.helperFunction.getDarkBackgroundColors(item);
   }
 
   /**
@@ -81,9 +83,8 @@ export class TeamStatusComponent implements OnInit {
    * @param item - The item is the properties of Status Object.
    * @returns CSS Class names if the condition is met from status Service
    */
-
-  backgroundColors(item: Status) {
-    return this.helperFunction.backgroundColors(item);
+  getBackgroundColors(item: Status) {
+    return this.helperFunction.getBackgroundColors(item);
   }
 
   /**
@@ -92,18 +93,15 @@ export class TeamStatusComponent implements OnInit {
    * @param item - The item is the properties of Status Object.
    * @returns CSS Class names if the condition is met from status Service
    */
-
-  taskNameStyleCondition(item: Status) {
-    return this.helperFunction.taskNameStyleCondition(item);
+  getTaskNameStyleCondition(item: Status) {
+    return this.helperFunction.getTaskNameStyleCondition(item);
   }
 
   /**
-   * gets the allocated team number
-   *
+   * Gets the allocated team number
    * @param teamName team name value
    * @returns team names allocated number
    */
-
   getTeamNumber(teamName: string): number {
     switch (teamName) {
       case 'ShopFloor':
@@ -120,14 +118,11 @@ export class TeamStatusComponent implements OnInit {
   }
 
   /**
-   * fetches status from status Service and also updates it,
+   * Fetches status from status Service and also updates it,
    */
-
-  private fetchStatusAndUpdate(): void {
+  private fetchStatusAndUpdate() {
     this.statusService.fetchStatus().subscribe({
       next: (response: any) => {
-        //filters the response data from api
-        //returns Filter data based on the provided ID
         let filteredResponse = response.filter((data: any) => {
           const teamId = this.getTeamNumber(data.area);
           return this.validIDs.includes(teamId); // Filter data based on the provided ID
@@ -138,7 +133,7 @@ export class TeamStatusComponent implements OnInit {
           this.leaveStatus
         );
 
-        //deserializes the filteredResponse data
+        //Deserializes the filteredResponse data
         this.status = filteredResponse.map((value: Status) =>
           new Status().deserialize(value)
         );
@@ -150,11 +145,11 @@ export class TeamStatusComponent implements OnInit {
     });
   }
 
-  private fetchLeaveStatus(date: string): void {
+  private fetchLeaveStatus(date: string) {
     this.statusService.fetchLeaveStatusData(date).subscribe({
       next: (response: any) => {
         this.leaveStatus = response.leaves.map((value: LeaveStatus) =>
-          //deserializes the response data
+          //Deserializes the response data
           new LeaveStatus().deserialize(value)
         );
       },
@@ -162,21 +157,30 @@ export class TeamStatusComponent implements OnInit {
   }
 
   /**
-   * for opening the modal
-   *
+   * For opening the modal
    * @param data data contains the array of Status Object
    */
-  openModal(data: Status[]) {
+  openModal(item: Status) {
     let config = {
       animation: true,
       backdrop: true,
-      data: {
-        data,
-      },
+      data: this.userActivityData,
       ignoreBackdropClick: false,
       keyboard: true,
     };
+    this.statusService.fetchModalData(item.user_id).subscribe({
+      next: (response: any) => {
+        this.userActivityData = [];
+        this.userActivityData = response.map((value: UserActivity) =>
+          //Deserializes the response data
+          new UserActivity().deserialize(value)
+        );
 
-    this.modalRef = this.modalService.open(ModalComponent, config);
+        config.data = this.userActivityData;
+        console.log(this.userActivityData);
+        console.log(config);
+        this.modalRef = this.modalService.open(ModalComponent, config);
+      },
+    });
   }
 }

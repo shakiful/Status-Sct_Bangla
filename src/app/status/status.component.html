@@ -116,9 +116,9 @@
 
     <div class="flex-container">
       <div *ngFor="let item of status">
-        <div class="height" [ngClass]="darkBackgroundColors(item)">
-          <div class="task" [ngClass]="backgroundColors(item)">
-            <div>{{ item.status | status_deactivate }}</div>
+        <div class="height" [ngClass]="getDarkBackgroundColors(item)">
+          <div class="task" [ngClass]="getBackgroundColors(item)">
+            <div>{{ item.status | status_deactivate : item.task_id }}</div>
             <div class="alignment">
               <span class="d-flex"
                 ><img class="clock" src="assets/clock-icon.png" alt="" /> </span

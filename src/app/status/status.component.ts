@@ -3,7 +3,7 @@ import { StatusService } from './../services/status.service';
 import { Component, OnInit } from '@angular/core';
 import { Status } from '../models/status.model';
 import { Router } from '@angular/router';
-import { HelperFunction } from '../shared/Class/helperFunction';
+import { HelperFunction } from '../shared/classes/helperFunction';
 
 @Component({
   selector: 'app-status',
@@ -19,13 +19,12 @@ export class StatusComponent implements OnInit {
 
   public status: Status[];
   public leaveStatus: LeaveStatus[];
-  public currentTime: string = '';
   public total = 0;
   public count = { active: 0, noTask: 0, deActivated: 0 };
   public id = false;
   public date: string = new Date().toISOString().split('T')[0];
 
-  ngOnInit(): void {
+  ngOnInit() {
     // Initial call to fetchStatus
     setInterval(() => {
       this.fetchLeaveStatus(this.date);
@@ -41,8 +40,8 @@ export class StatusComponent implements OnInit {
    * @param item - The item is the properties of Status Object.
    * @returns An object containing CSS class names corresponding to different background colors given if they meet the condition from status Service.
    */
-  darkBackgroundColors(item: Status) {
-    return this.helperFunction.darkBackgroundColors(item);
+  getDarkBackgroundColors(item: Status) {
+    return this.helperFunction.getDarkBackgroundColors(item);
   }
 
   /**
@@ -51,9 +50,8 @@ export class StatusComponent implements OnInit {
    * @param item - The item is the properties of Status Object.
    * @returns CSS Class names if the condition is met from status Service
    */
-
-  backgroundColors(item: Status) {
-    return this.helperFunction.backgroundColors(item);
+  getBackgroundColors(item: Status) {
+    return this.helperFunction.getBackgroundColors(item);
   }
 
   /**
@@ -62,15 +60,18 @@ export class StatusComponent implements OnInit {
    * @param item - The item is the properties of Status Object.
    * @returns CSS Class names if the condition is met from status Service
    */
+  getTaskNameStyleCondition(item: Status) {
+    return this.helperFunction.getTaskNameStyleCondition(item);
+  }
 
-  taskNameStyleCondition(item: Status) {
-    return this.helperFunction.taskNameStyleCondition(item);
+  getClassOnCondition(item: Status, type) {
+    // return type ? dar
   }
 
   /**
-   * fetches status from status Service and also updates it,
+   * Fetches status from status Service and also updates it,
    */
-  private fetchStatusAndUpdate(): void {
+  private fetchStatusAndUpdate() {
     this.statusService.fetchStatus().subscribe({
       next: (response: any) => {
         const checkedData = this.helperFunction.onLeaveCheck(
@@ -79,21 +80,20 @@ export class StatusComponent implements OnInit {
         );
 
         this.status = checkedData.map((value: Status) =>
-          //deserializes the response data
+          //Deserializes the response data
           new Status().deserialize(value)
         );
-
         // Update counts after receiving new data
         this.count = this.helperFunction.updateStatusCount(this.status);
         this.total = this.status.length;
       },
     });
   }
-  private fetchLeaveStatus(date: string): void {
+  private fetchLeaveStatus(date: string) {
     this.statusService.fetchLeaveStatusData(date).subscribe({
       next: (response: any) => {
         this.leaveStatus = response.leaves.map((value: LeaveStatus) =>
-          //deserializes the response data
+          //Deserializes the response data
           new LeaveStatus().deserialize(value)
         );
       },

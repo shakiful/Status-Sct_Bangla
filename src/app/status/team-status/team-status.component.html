@@ -105,10 +105,10 @@
   <!-- Sidebar end -->
 
   <div class="flex-container">
-    <div (dblclick)="openModal(status)" *ngFor="let item of status">
-      <div class="height" [ngClass]="darkBackgroundColors(item)">
-        <div class="task" [ngClass]="backgroundColors(item)">
-          <div>{{ item.status | status_deactivate }}</div>
+    <div (dblclick)="openModal(item)" *ngFor="let item of status">
+      <div class="height" [ngClass]="getDarkBackgroundColors(item)">
+        <div class="task" [ngClass]="getBackgroundColors(item)">
+          <div>{{ item.status | status_deactivate : item.task_id }}</div>
           <div class="alignment">
             <span class="d-flex"
               ><img class="clock" src="assets/clock-icon.png" alt="" /> </span
@@ -127,20 +127,24 @@
             }"
           >
             <span class="name">{{ item.user_name | shorten : 23 }}</span>
-            <span class="name">{{ item.task_id }}</span>
+            <span
+              *ngIf="item.status !== 'No Task' && item.task_id !== null"
+              class="name"
+              >{{ item.task_id }}</span
+            >
           </div>
           <span
-            *ngIf="item.status !== 'No Task' && item.status !== 'On Leave'"
+            *ngIf="item.status !== 'No Task' && item.task_id !== null"
             class="task-name px-2 py-2 d-flex text-start"
             data-bs-toggle="tooltip"
             data-bs-placement="top"
             title="{{ item.task_name }}"
-            [ngClass]="taskNameStyleCondition(item)"
+            [ngClass]="getTaskNameStyleCondition(item)"
             [ngStyle]="{
               'justify-content':
                 item.task_name.length <= 13 ? 'center' : 'start'
             }"
-            >{{ item.task_name | shorten : 115 }}</span
+            >{{ item.task_name | shorten : 113 }}</span
           >
         </div>
       </div>

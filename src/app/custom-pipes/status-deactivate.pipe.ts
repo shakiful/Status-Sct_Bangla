@@ -4,10 +4,13 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'status_deactivate',
 })
 export class StatusDeactivatePipe implements PipeTransform {
-  transform(value: any) {
-    if (value == "No Task") {
-      return value = "Deactivate";
+  transform(status: string, task_id: string) {
+    console.log(status);
+    if (task_id == null && status == 'No Task') {
+      console.log(status);
+
+      return (status = 'Deactivate');
     }
-    return value;
+    return status;
   }
 }

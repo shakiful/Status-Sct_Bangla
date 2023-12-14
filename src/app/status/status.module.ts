@@ -4,7 +4,7 @@ import { StatusComponent } from './status.component';
 import { StatusRoutingModule } from './status-routing.module';
 import { CustomPipeModule } from '../custom-pipes/custom.pipe.module';
 import { CommonModule } from '@angular/common';
-import { HelperFunction } from '../shared/Class/helperFunction';
+import { HelperFunction } from '../shared/classes/helperFunction';
 
 @NgModule({
   declarations: [StatusComponent],

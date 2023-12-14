@@ -1,6 +1,6 @@
 export class LeaveStatus {
   public emp_id?: number;
-  public emp_name?: string = '';
+  public emp_name?: string;
   public day?: number;
   public slot?: string;
   public leave_date?: Date;
