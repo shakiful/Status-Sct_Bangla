@@ -4,10 +4,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StatusService } from '../../services/status.service';
 import { ModalComponent } from 'src/app/modal/modal.component';
-import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { LeaveStatus } from 'src/app/models/leaveStatus.model';
 import { HelperFunction } from 'src/app/shared/classes/helperFunction';
 import { UserActivity } from 'src/app/models/userActivity.model';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 
 @Component({
   selector: 'app-team-status',
@@ -30,8 +30,8 @@ export class TeamStatusComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private statusService: StatusService,
-    private modalService: MdbModalService,
-    private helperFunction: HelperFunction
+    private helperFunction: HelperFunction,
+    private modalService: MdbModalService
   ) {}
 
   ngOnInit() {
@@ -165,7 +165,7 @@ export class TeamStatusComponent implements OnInit {
     let config = {
       animation: true,
       backdrop: true,
-      data: this.userActivityData,
+      data: {},
       ignoreBackdropClick: false,
       keyboard: true,
     };
@@ -176,13 +176,12 @@ export class TeamStatusComponent implements OnInit {
           //Deserializes the response data
           new UserActivity().deserialize(value)
         );
-
-        config.data = this.userActivityData;
+        let data = this.userActivityData;
+        config.data = { data };
         console.log(this.userActivityData);
         console.log(config);
         this.modalRef = this.modalService.open(ModalComponent, config);
       },
     });
-    
   }
 }
