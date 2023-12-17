@@ -4,32 +4,25 @@ import { StatusEnum } from '../enums/statusEnum';
 
 export class HelperFunction {
   updateStatusCount(status: Status[]) {
-    // Reset counts
-    let active: number = 0;
-    let noTask: number = 0;
-    let deActivated: number = 0;
+    return status.reduce(
+      (count, item) => {
+        const task_id = item.task_id;
+        const statusValue = item.status;
 
-    // Iterate through the status array
-    status.forEach((item: Status) => {
-      const task_id = item.task_id;
-      const status = item.status;
-      const isActive =
-        Object.values(StatusEnum).includes(status as StatusEnum) &&
-        task_id != '10891';
-
-      if (isActive) {
-        active++;
-      } else if (task_id === '10891') {
-        noTask++;
-      } else {
-        deActivated++;
-      }
-    });
-    return {
-      active,
-      noTask,
-      deActivated,
-    };
+        if (
+          Object.values(StatusEnum).includes(statusValue as StatusEnum) &&
+          task_id !== '10891'
+        ) {
+          count.active++;
+        } else if (task_id === '10891') {
+          count.noTask++;
+        } else {
+          count.deActivated++;
+        }
+        return count;
+      },
+      { active: 0, noTask: 0, deActivated: 0 }
+    );
   }
 
   /**
