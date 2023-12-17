@@ -62,7 +62,9 @@ export class HelperFunction {
       'grey-background':
         (item.status === 'No Task' && item.task_id === null) ||
         item.status === 'On Leave',
-      'red-background': item.task_id && item.status === 'No Task',
+      'red-background':
+        (item.task_id && item.status === 'No Task') ||
+        item.task_name === '***No Task.',
       'blue-background': item.status === 'Meeting',
     };
   }
@@ -75,7 +77,9 @@ export class HelperFunction {
    */
   getTaskNameStyleCondition(item: Status) {
     return {
-      'red-background': item.task_id && item.status === 'No Task',
+      'red-background':
+        (item.task_id && item.status === 'No Task') ||
+        item.task_name === '***No Task.',
       'blue-background': item.status === 'Meeting',
       'green-background':
         item.status === 'Programming' || 'Testing' || 'Designing (UI/UX)',

@@ -11,6 +11,8 @@ export class ModalComponent implements OnInit {
   data: any;
   constructor(public modalRef: MdbModalRef<ModalComponent>) {}
   ngOnInit(): void {
+    console.log(this.modalRef);
+
     this.data = this.modalRef.component;
     console.log(this.data);
   }

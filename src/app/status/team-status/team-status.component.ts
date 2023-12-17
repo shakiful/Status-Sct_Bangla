@@ -1,3 +1,4 @@
+import { map } from 'rxjs';
 import { Status } from '../../models/status.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -162,13 +163,13 @@ export class TeamStatusComponent implements OnInit {
    */
   openModal(item: Status) {
     let config = {
-      animation: true,
-      backdrop: true,
-      data: this.userActivityData,
-      ignoreBackdropClick: false,
-      keyboard: true,
-    };
-    this.statusService.fetchModalData(item.user_id).subscribe({
+              animation: true,
+          backdrop: true,
+          data: this.userActivityData,
+          ignoreBackdropClick: false,
+          keyboard: true,
+        };
+this.statusService.fetchModalData(item.user_id).subscribe({
       next: (response: any) => {
         this.userActivityData = [];
         this.userActivityData = response.map((value: UserActivity) =>
@@ -180,7 +181,7 @@ export class TeamStatusComponent implements OnInit {
         console.log(this.userActivityData);
         console.log(config);
         this.modalRef = this.modalService.open(ModalComponent, config);
-      },
-    });
+        }, 
+      });
   }
 }
