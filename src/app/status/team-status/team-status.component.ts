@@ -178,8 +178,6 @@ export class TeamStatusComponent implements OnInit {
         );
         let data = this.userActivityData;
         config.data = { data };
-        console.log(this.userActivityData);
-        console.log(config);
         this.modalRef = this.modalService.open(ModalComponent, config);
       },
     });
