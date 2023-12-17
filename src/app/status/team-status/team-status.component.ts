@@ -4,7 +4,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StatusService } from '../../services/status.service';
 import { ModalComponent } from 'src/app/modal/modal.component';
-import { LeaveStatus } from 'src/app/models/leaveStatus.model';
 import { HelperFunction } from 'src/app/shared/classes/helperFunction';
 import { UserActivity } from 'src/app/models/userActivity.model';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
@@ -19,7 +18,7 @@ export class TeamStatusComponent implements OnInit {
 
   id: string | null = null;
   validIDs: number[] | null = null;
-  public leaveStatus: LeaveStatus[];
+  public leaveStatus = [];
   public status: Status[];
   public userActivityData: UserActivity[];
   public total = 0;
@@ -124,21 +123,18 @@ export class TeamStatusComponent implements OnInit {
   private fetchStatusAndUpdate() {
     this.statusService.fetchStatus().subscribe({
       next: (response: any) => {
-        let filteredResponse = response.filter((data: any) => {
-          const teamId = this.getTeamNumber(data.area);
-          return this.validIDs.includes(teamId); // Filter data based on the provided ID
-        });
-
-        filteredResponse = this.helperFunction.onLeaveCheck(
-          filteredResponse,
-          this.leaveStatus
-        );
-
-        //Deserializes the filteredResponse data
-        this.status = filteredResponse.map((value: Status) =>
-          new Status().deserialize(value)
-        );
-
+        this.status = response
+          .filter((data: any) => {
+            const teamId = this.getTeamNumber(data.area);
+            return this.validIDs.includes(teamId);
+          })
+          .map((data: any) => {
+            const statusObj = new Status().deserialize(data);
+            if (this.leaveStatus.includes(data.user_id)) {
+              statusObj.status = 'On Leave';
+            }
+            return statusObj;
+          });
         // Update counts after receiving new data
         this.count = this.helperFunction.updateStatusCount(this.status);
         this.total = this.status.length;
@@ -149,10 +145,7 @@ export class TeamStatusComponent implements OnInit {
   private fetchLeaveStatus(date: string) {
     this.statusService.fetchLeaveStatusData(date).subscribe({
       next: (response: any) => {
-        this.leaveStatus = response.leaves.map((value: LeaveStatus) =>
-          //Deserializes the response data
-          new LeaveStatus().deserialize(value)
-        );
+        this.leaveStatus = response.leaves.map((value) => value.emp_id);
       },
     });
   }

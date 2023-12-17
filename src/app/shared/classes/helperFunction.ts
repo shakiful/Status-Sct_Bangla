@@ -1,4 +1,3 @@
-import { LeaveStatus } from '../../models/leaveStatus.model';
 import { Status } from '../../models/status.model';
 import { StatusEnum } from '../enums/statusEnum';
 
@@ -81,18 +80,4 @@ export class HelperFunction {
    * @param leaveStatus - leaveStatus contains the array of LeaveStatus Object
    * @returns the status of the employee
    */
-  onLeaveCheck(status: Status[], leaveStatus: LeaveStatus[]): Status[] {
-    if (status && leaveStatus) {
-      status.forEach((value: Status) => {
-        leaveStatus.find((data: LeaveStatus) => {
-          if (!value.task_id) {
-            if (value.user_id === data.emp_id) {
-              value.status = 'On Leave';
-            }
-          }
-        });
-      });
-    }
-    return status;
-  }
 }

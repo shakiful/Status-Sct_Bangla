@@ -1,4 +1,3 @@
-import { LeaveStatus } from './../models/leaveStatus.model';
 import { StatusService } from './../services/status.service';
 import { Component, OnInit } from '@angular/core';
 import { Status } from '../models/status.model';
@@ -18,7 +17,7 @@ export class StatusComponent implements OnInit {
   ) {}
 
   public status: Status[];
-  public leaveStatus: LeaveStatus[];
+  public leaveStatus = [];
   public total = 0;
   public count = { active: 0, noTask: 0, deActivated: 0 };
   public id = false;
@@ -74,15 +73,11 @@ export class StatusComponent implements OnInit {
   private fetchStatusAndUpdate() {
     this.statusService.fetchStatus().subscribe({
       next: (response: any) => {
-        const checkedData = this.helperFunction.onLeaveCheck(
-          response,
-          this.leaveStatus
-        );
-
-        this.status = checkedData.map((value: Status) =>
-          //Deserializes the response data
-          new Status().deserialize(value)
-        );
+        this.status = response.map((machine) => {
+          if (this.leaveStatus.includes(machine.user_id))
+            machine.status = 'On Leave';
+          return new Status().deserialize(machine);
+        });
         // Update counts after receiving new data
         this.count = this.helperFunction.updateStatusCount(this.status);
         this.total = this.status.length;
@@ -92,10 +87,7 @@ export class StatusComponent implements OnInit {
   private fetchLeaveStatus(date: string) {
     this.statusService.fetchLeaveStatusData(date).subscribe({
       next: (response: any) => {
-        this.leaveStatus = response.leaves.map((value: LeaveStatus) =>
-          //Deserializes the response data
-          new LeaveStatus().deserialize(value)
-        );
+        this.leaveStatus = response.leaves.map((value) => value.emp_id);
       },
     });
   }
