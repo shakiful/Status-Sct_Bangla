@@ -17,7 +17,7 @@ export class StatusComponent implements OnInit {
   ) {}
 
   public status: Status[];
-  public leaveStatus = [];
+  public leaveStatus: number[] = [];
   public total = 0;
   public count = { active: 0, noTask: 0, deActivated: 0 };
   public id = false;
@@ -74,8 +74,10 @@ export class StatusComponent implements OnInit {
     this.statusService.fetchStatus().subscribe({
       next: (response: any) => {
         this.status = response.map((machine) => {
-          if (this.leaveStatus.includes(machine.user_id))
-            machine.status = 'On Leave';
+          if (!machine.task_id) {
+            if (this.leaveStatus.includes(machine.user_id))
+              machine.status = 'On Leave';
+          }
           return new Status().deserialize(machine);
         });
         // Update counts after receiving new data

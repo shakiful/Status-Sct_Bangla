@@ -124,14 +124,16 @@ export class TeamStatusComponent implements OnInit {
     this.statusService.fetchStatus().subscribe({
       next: (response: any) => {
         this.status = response
-          .filter((data: any) => {
+          .filter((data) => {
             const teamId = this.getTeamNumber(data.area);
             return this.validIDs.includes(teamId);
           })
-          .map((data: any) => {
+          .map((data) => {
             const statusObj = new Status().deserialize(data);
-            if (this.leaveStatus.includes(data.user_id)) {
-              statusObj.status = 'On Leave';
+            if (!data.task_id) {
+              if (this.leaveStatus.includes(data.user_id)) {
+                statusObj.status = 'On Leave';
+              }
             }
             return statusObj;
           });

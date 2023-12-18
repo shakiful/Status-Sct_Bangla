@@ -73,11 +73,4 @@ export class HelperFunction {
         item.status === 'Programming' || 'Testing' || 'Designing (UI/UX)',
     };
   }
-
-  /**
-   *Checks if The user is on leave or not
-   * @param status - status contains the array of Status Object
-   * @param leaveStatus - leaveStatus contains the array of LeaveStatus Object
-   * @returns the status of the employee
-   */
 }
