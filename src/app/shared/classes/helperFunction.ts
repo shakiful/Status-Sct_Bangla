@@ -15,12 +15,14 @@ export class HelperFunction {
           count.active++;
         } else if (task_id === '10891') {
           count.noTask++;
+        } else if (statusValue === 'On Leave') {
+          count.onLeave++;
         } else {
           count.deActivated++;
         }
         return count;
       },
-      { active: 0, noTask: 0, deActivated: 0 }
+      { active: 0, noTask: 0, onLeave: 0, deActivated: 0 }
     );
   }
 
@@ -37,7 +39,8 @@ export class HelperFunction {
       'dark-green-background': Object.values(StatusEnum).includes(
         status as StatusEnum
       ),
-      'dark-grey-background': status === 'No Task' || status === 'On Leave',
+      'dark-grey-background': status === 'No Task',
+      'dark-yellow-background': status === 'On Leave',
       'dark-red-background': task_id === '10891',
       'dark-blue-background': status === 'Meeting',
     };
@@ -51,9 +54,8 @@ export class HelperFunction {
    */
   getBackgroundColors(item: Status) {
     return {
-      'grey-background':
-        (item.status === 'No Task' && item.task_id === null) ||
-        item.status === 'On Leave',
+      'grey-background': item.status === 'No Task' && item.task_id === null,
+      'yellow-background': item.status === 'On Leave',
       'red-background': item.task_id && item.status === 'No Task',
       'blue-background': item.status === 'Meeting',
     };

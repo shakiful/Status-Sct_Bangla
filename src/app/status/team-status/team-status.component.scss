@@ -85,6 +85,10 @@
   background-color: #ff6358;
 }
 
+.yellow-background {
+  background-color: #dbbe00;
+}
+
 .blue-background {
   background-color: #005981;
 }
@@ -101,6 +105,11 @@
 .dark-grey-background {
   border-radius: 8px 8px 8px 8px;
   background-color: rgba(52, 64, 84, 0.5);
+}
+
+.dark-yellow-background {
+  border-radius: 8px 8px 8px 8px;
+  background-color: rgba(219, 190, 0, 0.7);
 }
 
 .dark-red-background {
@@ -124,7 +133,7 @@
 .sidebar-text {
   color: #fff;
   text-align: center;
-  font-size: 23px;
+  font-size: 19px;
   font-style: normal;
   font-weight: 600;
   text-transform: uppercase;
@@ -145,15 +154,16 @@
   transform: translate(-50%, -50%);
   color: #fff;
   text-align: center;
-  font-size: 26px; /* Adjust the font size */
+  font-size: 24px; /* Adjust the font size */
   font-weight: 400;
 }
 
 .sidebar-circle {
-  height: 120px;
+  height: 110px;
 }
 
 .sidebar-circle-small {
+  height: 39px;
   position: absolute;
   top: 85%;
   left: 85%;
@@ -162,6 +172,7 @@
 }
 
 .sidebar-icons {
+  height: 28px;
   position: absolute;
   top: 85%;
   left: 85%;

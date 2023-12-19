@@ -22,7 +22,7 @@ export class TeamStatusComponent implements OnInit {
   public status: Status[];
   public userActivityData: UserActivity[];
   public total = 0;
-  public count = { active: 0, noTask: 0, deActivated: 0 };
+  public count = { active: 0, noTask: 0, onLeave: 0, deActivated: 0 };
   public date: string = new Date().toISOString().split('T')[0];
 
   constructor(

@@ -3,14 +3,14 @@
   <div
     class="d-inline-flex flex-column justify-content-start justify-content-evenly align-items-center sidebar-frame"
   >
-    <div class="d-flex flex-column align-items-center gap-2">
+    <div class="d-flex flex-column align-items-center">
       <div class="sidebar-text">Total</div>
       <div
         class="d-flex justify-content-center align-items-center gap-1 active-style"
       >
         <span
           ><img
-            class="sidebar-circle orange-color"
+            class="sidebar-circle"
             src="assets/blue_Ellipse.png"
             alt="total"
           />
@@ -18,7 +18,7 @@
         </span>
       </div>
     </div>
-    <div class="d-flex flex-column align-items-center gap-2">
+    <div class="d-flex flex-column align-items-center">
       <div class="sidebar-text">Active</div>
       <div
         class="d-flex justify-content-center align-items-center gap-1 active-style"
@@ -46,7 +46,7 @@
         </span>
       </div>
     </div>
-    <div class="d-flex flex-column align-items-center gap-2">
+    <div class="d-flex flex-column align-items-center">
       <div class="sidebar-text">No Task</div>
       <div
         class="d-flex justify-content-center align-items-center gap-1 active-style"
@@ -73,7 +73,7 @@
         </span>
       </div>
     </div>
-    <div class="d-flex flex-column align-items-center gap-2">
+    <div class="d-flex flex-column align-items-center">
       <div class="sidebar-text">Deactive</div>
       <div
         class="d-flex justify-content-center align-items-center gap-1 active-style"
@@ -97,6 +97,33 @@
             />
           </span>
           <p class="count">{{ count.deActivated }}</p>
+        </span>
+      </div>
+    </div>
+    <div class="d-flex flex-column align-items-center">
+      <div class="sidebar-text">On Leave</div>
+      <div
+        class="d-flex justify-content-center align-items-center gap-1 active-style"
+      >
+        <span
+          ><img
+            class="sidebar-circle"
+            src="assets/yellow_Ellipse.png"
+            alt="on leave"
+          />
+          <span>
+            <img
+              class="sidebar-circle-small"
+              src="assets/small_yellow_Ellipse.png"
+              alt="onLeave"
+            />
+            <img
+              class="sidebar-icons"
+              src="assets/leave_icon.png"
+              alt="onLeave"
+            />
+          </span>
+          <p class="count">{{ count.onLeave }}</p>
         </span>
       </div>
     </div>

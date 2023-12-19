@@ -19,7 +19,7 @@ export class StatusComponent implements OnInit {
   public status: Status[];
   public leaveStatus: number[] = [];
   public total = 0;
-  public count = { active: 0, noTask: 0, deActivated: 0 };
+  public count = { active: 0, noTask: 0, onLeave: 0, deActivated: 0 };
   public id = false;
   public date: string = new Date().toISOString().split('T')[0];
 

@@ -1,7 +1,5 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { StatusComponent } from './status/status.component';
-import { TeamStatusComponent } from './status/team-status/team-status.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/user_status', pathMatch: 'full' },
