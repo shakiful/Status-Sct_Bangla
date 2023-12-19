@@ -63,10 +63,6 @@ export class StatusComponent implements OnInit {
     return this.helperFunction.getTaskNameStyleCondition(item);
   }
 
-  getClassOnCondition(item: Status, type) {
-    // return type ? dar
-  }
-
   /**
    * Fetches status from status Service and also updates it,
    */

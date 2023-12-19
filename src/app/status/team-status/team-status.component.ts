@@ -1,4 +1,3 @@
-import { map } from 'rxjs';
 import { Status } from '../../models/status.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';

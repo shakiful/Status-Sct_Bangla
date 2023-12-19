@@ -6,16 +6,17 @@ export class HelperFunction {
     return status.reduce(
       (count, item) => {
         const task_id = item.task_id;
-        const statusValue = item.status;
-
+        const statusValue = item.status as StatusEnum;
         if (
-          Object.values(StatusEnum).includes(statusValue as StatusEnum) &&
-          task_id !== '10891'
+          Object.values(StatusEnum).includes(statusValue) &&
+          StatusEnum.taskId !== task_id &&
+          StatusEnum.onLeave !== statusValue &&
+          StatusEnum.noTask !== statusValue
         ) {
           count.active++;
-        } else if (task_id === '10891') {
+        } else if (StatusEnum.taskId === task_id) {
           count.noTask++;
-        } else if (statusValue === 'On Leave') {
+        } else if (StatusEnum.onLeave === statusValue) {
           count.onLeave++;
         } else {
           count.deActivated++;
@@ -33,16 +34,17 @@ export class HelperFunction {
    * @returns An object containing CSS class names corresponding to different background colors given if they meet the  condition.
    */
   getDarkBackgroundColors(item: Status) {
-    const status = item.status;
+    const status = item.status as StatusEnum;
     const task_id = item.task_id;
     return {
-      'dark-green-background': Object.values(StatusEnum).includes(
-        status as StatusEnum
-      ),
-      'dark-grey-background': status === 'No Task',
-      'dark-yellow-background': status === 'On Leave',
-      'dark-red-background': task_id === '10891',
-      'dark-blue-background': status === 'Meeting',
+      'dark-green-background':
+        Object.values(StatusEnum).includes(status) &&
+        StatusEnum.taskId !== task_id &&
+        StatusEnum.onLeave !== status,
+      'dark-grey-background': status === StatusEnum.noTask,
+      'dark-yellow-background': status === StatusEnum.onLeave,
+      'dark-red-background': task_id === StatusEnum.taskId,
+      'dark-blue-background': status === StatusEnum.meeting,
     };
   }
 
@@ -53,11 +55,13 @@ export class HelperFunction {
    * @returns CSS Class names if the condition is met
    */
   getBackgroundColors(item: Status) {
+    const status = item.status as StatusEnum;
+    const task_id = item.task_id;
     return {
-      'grey-background': item.status === 'No Task' && item.task_id === null,
-      'yellow-background': item.status === 'On Leave',
-      'red-background': item.task_id && item.status === 'No Task',
-      'blue-background': item.status === 'Meeting',
+      'grey-background': task_id === null && status === StatusEnum.noTask,
+      'yellow-background': status === StatusEnum.onLeave,
+      'red-background': task_id === StatusEnum.taskId,
+      'blue-background': status === StatusEnum.meeting,
     };
   }
 
@@ -68,11 +72,15 @@ export class HelperFunction {
    * @returns CSS Class names if the condition is met
    */
   getTaskNameStyleCondition(item: Status) {
+    const status = item.status as StatusEnum;
+    const task_id = item.task_id;
     return {
-      'red-background': item.task_id && item.status === 'No Task',
-      'blue-background': item.status === 'Meeting',
+      'red-background': task_id === StatusEnum.taskId,
+      'blue-background': status === StatusEnum.meeting,
       'green-background':
-        item.status === 'Programming' || 'Testing' || 'Designing (UI/UX)',
+        Object.values(StatusEnum).includes(status) &&
+        StatusEnum.taskId !== task_id &&
+        StatusEnum.onLeave !== status,
     };
   }
 }
