@@ -9,12 +9,11 @@ export class HelperFunction {
         const statusValue = item.status as StatusEnum;
         if (
           Object.values(StatusEnum).includes(statusValue) &&
-          StatusEnum.taskId !== task_id &&
           StatusEnum.onLeave !== statusValue &&
           StatusEnum.noTask !== statusValue
         ) {
           count.active++;
-        } else if (StatusEnum.taskId === task_id) {
+        } else if (task_id && StatusEnum.noTask == statusValue) {
           count.noTask++;
         } else if (StatusEnum.onLeave === statusValue) {
           count.onLeave++;
@@ -39,11 +38,11 @@ export class HelperFunction {
     return {
       'dark-green-background':
         Object.values(StatusEnum).includes(status) &&
-        StatusEnum.taskId !== task_id &&
+        StatusEnum.noTask !== status &&
         StatusEnum.onLeave !== status,
       'dark-grey-background': status === StatusEnum.noTask,
       'dark-yellow-background': status === StatusEnum.onLeave,
-      'dark-red-background': task_id === StatusEnum.taskId,
+      'dark-red-background': task_id && StatusEnum.noTask == status,
       'dark-blue-background': status === StatusEnum.meeting,
     };
   }
@@ -60,7 +59,7 @@ export class HelperFunction {
     return {
       'grey-background': task_id === null && status === StatusEnum.noTask,
       'yellow-background': status === StatusEnum.onLeave,
-      'red-background': task_id === StatusEnum.taskId,
+      'red-background': task_id && StatusEnum.noTask == status,
       'blue-background': status === StatusEnum.meeting,
     };
   }
@@ -75,11 +74,11 @@ export class HelperFunction {
     const status = item.status as StatusEnum;
     const task_id = item.task_id;
     return {
-      'red-background': task_id === StatusEnum.taskId,
+      'red-background': task_id && status === StatusEnum.noTask,
       'blue-background': status === StatusEnum.meeting,
       'green-background':
         Object.values(StatusEnum).includes(status) &&
-        StatusEnum.taskId !== task_id &&
+        StatusEnum.noTask !== status &&
         StatusEnum.onLeave !== status,
     };
   }
