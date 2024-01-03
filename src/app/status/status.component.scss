@@ -38,7 +38,7 @@
   color: white;
   text-align: center;
   line-height: 69px;
-  width: 400px;
+  width: 328px;
   font-size: 30px;
   border-radius: 8px 8px 8px 8px;
 }
@@ -118,7 +118,7 @@
 }
 
 .sidebar-frame {
-  width: 234px;
+  width: 198px;
   height: calc(100vh - 82px);
   border-radius: 7px;
   background: #00384e;
@@ -223,7 +223,7 @@
     color: white;
     text-align: center;
     line-height: 55px;
-    width: 327px;
+    width: 338px;
     font-size: 30px;
     border-radius: 8px 8px 8px 8px;
     padding-left: 4px;
@@ -271,6 +271,19 @@
 
   .sidebar-icons {
     height: 30px;
+  }
+}
+
+@media (max-width: 1536px) {
+  .flex-container > div {
+    width: 257px;
+  }
+
+  .height {
+    height: 109px; //else 84px should be alright
+  }
+  .name {
+    font-size: 20px;
   }
 }
 
@@ -324,7 +337,7 @@
     color: white;
     text-align: center;
     line-height: 35px;
-    width: 277px;
+    width: 233px;
     font-size: 30px;
     border-radius: 8px 8px 8px 8px;
     padding-left: 4px;
@@ -375,7 +388,7 @@
 
   @media (max-width: 1280px) {
     .flex-container > div {
-      width: 260px;
+      width: 233px;
     }
 
     .height {
