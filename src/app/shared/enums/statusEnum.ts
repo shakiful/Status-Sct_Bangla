@@ -6,6 +6,7 @@ export enum StatusEnum {
   management = 'Management',
   debugging = 'Debugging',
   documentation = 'Documentation',
+  Implementation = 'Implementation',
   noTask = 'No Task',
   onLeave = 'On Leave',
   meeting = 'Meeting',

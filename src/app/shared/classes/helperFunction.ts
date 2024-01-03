@@ -37,9 +37,7 @@ export class HelperFunction {
     const task_id = item.task_id;
     return {
       'dark-green-background':
-        Object.values(StatusEnum).includes(status) &&
-        StatusEnum.noTask !== status &&
-        StatusEnum.onLeave !== status,
+        StatusEnum.noTask !== status && StatusEnum.onLeave !== status,
       'dark-grey-background': status === StatusEnum.noTask,
       'dark-yellow-background': status === StatusEnum.onLeave,
       'dark-red-background': task_id && StatusEnum.noTask == status,
