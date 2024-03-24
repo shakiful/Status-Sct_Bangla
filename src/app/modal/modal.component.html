@@ -1,0 +1,36 @@
+<div class="modal-content modal-fullscreen">
+  <div class="modal-header">
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modalRef.close()"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <table class="table table-bordered">
+      <thead class="thead-light">
+        <tr>
+          <th>User Id</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+          <th>Status</th>
+          <th>Problem</th>
+          <th>Id</th>
+          <th>Elapsed Mins</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of data | keyvalue">
+          <td>{{ item.value['user_id'] }}</td>
+          <td>{{ item.value['start_time'] }}</td>
+          <td>{{ item.value['end_time'] }}</td>
+          <td>{{ item.value['status'] }}</td>
+          <td>{{ item.value['problem'] }}</td>
+          <td>{{ item.value['id'] }}</td>
+          <td>{{ item.value['elapsed_mins'] }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="router.url === '/user_status'">
   <div class="title">
     <div class="text">Member List</div>
     <div class="flex-end">
@@ -7,32 +7,156 @@
       </span>
     </div>
   </div>
-  <div class="flex-container">
-    <div *ngFor="let item of status">
-      <div
-        [ngClass]="{
-          'dark-green-background':
-            item.status === 'Programming' || 'Testing' || 'Designing (UI/UX)',
-          'dark-red-background': item.status === 'No Task',
-          'dark-blue-background': item.status === 'Meeting'
-        }"
-      >
+
+  <div class="d-flex flex-row">
+    <!-- Sidebar start -->
+    <div
+      class="d-inline-flex flex-column justify-content-start justify-content-evenly align-items-center sidebar-frame"
+    >
+      <div class="d-flex flex-column align-items-center">
+        <div class="sidebar-text">Total</div>
         <div
-          class="task"
-          [ngClass]="{
-            'red-background': item.status === 'No Task',
-            'blue-background': item.status === 'Meeting'
-          }"
+          class="d-flex justify-content-center align-items-center gap-1 active-style"
         >
-          <div>{{ item.status }}</div>
-          <div class="alignment">
-            <span style="display: flex"
-              ><img class="clock" src="assets/clock-icon.png" alt="" /> </span
-            ><span class="time">{{ item.total_time }}</span>
-          </div>
+          <span
+            ><img
+              class="sidebar-circle"
+              src="assets/blue_Ellipse.png"
+              alt="total"
+            />
+            <p class="count">{{ total }}</p>
+          </span>
         </div>
-        <span class="name">{{ item.user_name }}</span>
+      </div>
+      <div class="d-flex flex-column align-items-center">
+        <div class="sidebar-text">Active</div>
+        <div
+          class="d-flex justify-content-center align-items-center gap-1 active-style"
+        >
+          <span
+            ><img
+              class="sidebar-circle"
+              src="assets/Ellipse 114.png"
+              alt="active"
+            />
+            <span>
+              <img
+                class="sidebar-circle-small"
+                src="assets/small_green_ellipse.png"
+                alt="active"
+              />
+              <img
+                class="sidebar-icons"
+                src="assets/play_icon.png"
+                alt="active"
+              />
+            </span>
+
+            <p class="count">{{ count.active }}</p>
+          </span>
+        </div>
+      </div>
+      <div class="d-flex flex-column align-items-center">
+        <div class="sidebar-text">No Task</div>
+        <div
+          class="d-flex justify-content-center align-items-center gap-1 active-style"
+        >
+          <span
+            ><img
+              class="sidebar-circle"
+              src="assets/red_ellipse.png"
+              alt="No Task"
+            />
+            <span>
+              <img
+                class="sidebar-circle-small"
+                src="assets/small_red_ellipse.png"
+                alt="active"
+              />
+              <img
+                class="sidebar-icons red-color"
+                src="assets/close_icon.png"
+                alt="active"
+              />
+            </span>
+            <p class="count">{{ count.noTask }}</p>
+          </span>
+        </div>
+      </div>
+      <div class="d-flex flex-column align-items-center">
+        <div class="sidebar-text">Deactive</div>
+        <div
+          class="d-flex justify-content-center align-items-center gap-1 active-style"
+        >
+          <span
+            ><img
+              class="sidebar-circle"
+              src="assets/gray_Ellipse.png"
+              alt="deactive"
+            />
+            <span>
+              <img
+                class="sidebar-circle-small"
+                src="assets/small_gray_ellipse.png"
+                alt="active"
+              />
+              <img
+                class="sidebar-icons gray-color"
+                src="assets/pause_icon.png"
+                alt="active"
+              />
+            </span>
+            <p class="count">{{ count.deActivated }}</p>
+          </span>
+        </div>
+      </div>
+      <div class="d-flex flex-column align-items-center">
+        <div class="sidebar-text">On Leave</div>
+        <div
+          class="d-flex justify-content-center align-items-center gap-1 active-style"
+        >
+          <span
+            ><img
+              class="sidebar-circle"
+              src="assets/yellow_Ellipse.png"
+              alt="on leave"
+            />
+            <span>
+              <img
+                class="sidebar-circle-small"
+                src="assets/small_yellow_Ellipse.png"
+                alt="onLeave"
+              />
+              <img
+                class="sidebar-icons"
+                src="assets/leave_icon.png"
+                alt="onLeave"
+              />
+            </span>
+            <p class="count">{{ count.onLeave }}</p>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar end -->
+
+    <div class="flex-container">
+      <div *ngFor="let item of status">
+        <div class="height" [ngClass]="getDarkBackgroundColors(item)">
+          <div class="task" [ngClass]="getBackgroundColors(item)">
+            <div>{{ item.status | status_deactivate : item.task_id }}</div>
+            <div class="alignment">
+              <span class="d-flex"
+                ><img class="clock" src="assets/clock-icon.png" alt="" /> </span
+              ><span class="time">{{ item.total_time }}</span>
+            </div>
+          </div>
+          <span class="name">{{ item.user_name | shorten : 23 |  uppercase }}</span>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<router-outlet></router-outlet>
