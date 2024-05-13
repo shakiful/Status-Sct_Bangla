@@ -103,13 +103,13 @@ export class TeamStatusComponent implements OnInit {
    */
   getTeamNumber(teamName: string): number {
     switch (teamName) {
-      case 'ShopFloor':
+      case 'Shopfloor':
         return 1;
       case 'SAP':
         return 2;
       case 'UI/UX Design':
         return 3;
-      case 'SQA':
+      case 'UX/UI Design Team':
         return 4;
       default:
         return 0;
