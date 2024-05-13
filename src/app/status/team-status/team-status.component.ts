@@ -107,9 +107,9 @@ export class TeamStatusComponent implements OnInit {
         return 1;
       case 'SAP':
         return 2;
-      case 'UI/UX Design':
-        return 3;
       case 'UX/UI Design Team':
+        return 3;
+      case 'QA Team':
         return 4;
       default:
         return 0;
